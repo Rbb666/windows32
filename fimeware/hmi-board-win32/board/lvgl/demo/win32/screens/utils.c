@@ -1,11 +1,14 @@
 #include "player.h"
 #include "wlan_mgnt.h"
 #include "utils.h"
+#include "lvgl.h"
 
 #define DBG_TAG "WLAN"
 #define DBG_LVL DBG_LOG
 
 #include <rtdbg.h>
+
+#define __Sizeof(arr) (sizeof(arr)/sizeof(arr[0]))
 
 static struct rt_thread wifi_scan_thread;
 static struct rt_thread wifi_connect_thread;
@@ -15,6 +18,17 @@ static wifi_info_t Wifi_Info;
 
 wifi_info_t Wifi_InfoS[20];
 int wifi_index = 0;
+
+void PageDelay(uint32_t ms)
+{
+    uint32_t lastTime = lv_tick_get();
+
+    while (lv_tick_elaps(lastTime) <= ms)
+    {
+        lv_task_handler();
+        rt_thread_mdelay(LV_DISP_DEF_REFR_PERIOD);
+    }
+}
 
 static rt_err_t wifi_scan_result_cache(struct rt_wlan_info *info)
 {
@@ -114,4 +128,31 @@ int WiFi_Join(const char *ssid, const char *password)
     }
     rt_thread_startup(&wifi_connect_thread);
     return 0;
+}
+
+void palyer_list_clear(player_t p)
+{
+    LOG_I("palyer_list_clear..");
+    p->song_current = 0;
+    p->video_num = 0;
+    int i;
+    for (i = 0; i < __Sizeof(p->video_list); i++)
+    {
+        if (p->video_list[i] != RT_NULL)
+        {
+            LOG_I("DEL: %s", p->video_list[i]);
+            p->video_list[i] = RT_NULL;
+        }
+    }
+}
+
+void play_video(const char *video_name)
+{
+	palyer_list_clear(&v_player);
+	player_control(&v_player, PLAYER_CMD_INIT, (char *)video_name);
+}
+
+void exit_play_video(void)
+{
+	player_control(&v_player, PLAYER_CMD_DELETE, RT_NULL);
 }

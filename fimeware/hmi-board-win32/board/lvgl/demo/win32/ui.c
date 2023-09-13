@@ -1511,6 +1511,8 @@ if ( event_code == LV_EVENT_CLICKED) {
       fadein_Animation(ui_video_player_panel, 0);
       _ui_opacity_set( ui_video_player_panel, 0);
       _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  PageDelay(500);
+	  play_video("video/1.avi");
 }
 }
 void ui_event_video_02( lv_event_t * e) {
@@ -1520,6 +1522,8 @@ if ( event_code == LV_EVENT_CLICKED) {
       fadein_Animation(ui_video_player_panel, 0);
       _ui_opacity_set( ui_video_player_panel, 0);
       _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  PageDelay(500);
+	  play_video("video/2.avi");
 }
 }
 void ui_event_video_03( lv_event_t * e) {
@@ -1529,6 +1533,8 @@ if ( event_code == LV_EVENT_CLICKED) {
       movetoleft_Animation(ui_video_panel, 0);
       _ui_opacity_set( ui_video_player_panel, 0);
       _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  PageDelay(500);
+	  play_video("video/3.avi");
 }
 }
 void ui_event_video_04( lv_event_t * e) {
@@ -1538,6 +1544,8 @@ if ( event_code == LV_EVENT_CLICKED) {
       movetoleft_Animation(ui_video_panel, 0);
       _ui_opacity_set( ui_video_player_panel, 0);
       _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  PageDelay(500);
+	  play_video("video/4.avi");
 }
 }
 void ui_event_music_panel( lv_event_t * e) {
@@ -1741,6 +1749,7 @@ void ui_event_video_player_panel( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
 lv_indev_wait_release(lv_indev_get_act());
+	  exit_play_video();
       _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       movetocenter_Animation(ui_video_panel, 0);
       _ui_opacity_set( ui_video_panel, 0);

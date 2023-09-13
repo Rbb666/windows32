@@ -379,6 +379,9 @@ int player_control(player_t player, int cmd, void *arg)
     case PLAYER_CMD_NEXT:
         player_next(player);
         break;
+	case PLAYER_CMD_DELETE:
+        player->status = PLAYER_DELETE;
+        break;
     case PLAYER_CMD_SET_VOL:
         level = rt_hw_interrupt_disable();
         player->volume = *(int16_t *)arg;

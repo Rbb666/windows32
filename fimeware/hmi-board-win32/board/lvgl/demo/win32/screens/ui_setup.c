@@ -5,6 +5,7 @@
 
 #include "../ui.h"
 #include "player.h"
+#include "utils.h"
 
 struct player v_player;
 static lv_timer_t *timer;
