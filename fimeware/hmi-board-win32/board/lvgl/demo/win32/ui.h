@@ -139,36 +139,6 @@ extern lv_obj_t *ui_hide;
 extern lv_obj_t *ui_Head;
 extern lv_obj_t *ui_name;
 extern lv_obj_t *ui_panel_name;
-void ui_event_video_panel( lv_event_t * e);
-extern lv_obj_t *ui_video_panel;
-void ui_event_video_01( lv_event_t * e);
-extern lv_obj_t *ui_video_01;
-extern lv_obj_t *ui_video_title_img1;
-extern lv_obj_t *ui_days1;
-extern lv_obj_t *ui_resolution1;
-extern lv_obj_t *ui_Label9;
-extern lv_obj_t *ui_video_name1;
-void ui_event_video_02( lv_event_t * e);
-extern lv_obj_t *ui_video_02;
-extern lv_obj_t *ui_video_title_img2;
-extern lv_obj_t *ui_days2;
-extern lv_obj_t *ui_resolution2;
-extern lv_obj_t *ui_Label6;
-extern lv_obj_t *ui_video_name2;
-void ui_event_video_03( lv_event_t * e);
-extern lv_obj_t *ui_video_03;
-extern lv_obj_t *ui_video_title_img3;
-extern lv_obj_t *ui_days3;
-extern lv_obj_t *ui_resolution3;
-extern lv_obj_t *ui_Label10;
-extern lv_obj_t *ui_video_name3;
-void ui_event_video_04( lv_event_t * e);
-extern lv_obj_t *ui_video_04;
-extern lv_obj_t *ui_video_title_img4;
-extern lv_obj_t *ui_days4;
-extern lv_obj_t *ui_resolution4;
-extern lv_obj_t *ui_Label11;
-extern lv_obj_t *ui_video_name4;
 void ui_event_music_panel( lv_event_t * e);
 extern lv_obj_t *ui_music_panel;
 extern lv_obj_t *ui_album;
@@ -179,6 +149,7 @@ extern lv_obj_t *ui_album_card1;
 extern lv_obj_t *ui_music_title;
 extern lv_obj_t *ui_author;
 extern lv_obj_t *ui_next_song;
+void ui_event_play( lv_event_t * e);
 extern lv_obj_t *ui_play;
 extern lv_obj_t *ui_pre_song;
 extern lv_obj_t *ui_music_process;
@@ -219,6 +190,36 @@ extern lv_obj_t *ui_reduce;
 extern lv_obj_t *ui_photo_icon;
 void ui_event_photo_close( lv_event_t * e);
 extern lv_obj_t *ui_photo_close;
+void ui_event_video_panel( lv_event_t * e);
+extern lv_obj_t *ui_video_panel;
+void ui_event_video_01( lv_event_t * e);
+extern lv_obj_t *ui_video_01;
+extern lv_obj_t *ui_video_title_img1;
+extern lv_obj_t *ui_days1;
+extern lv_obj_t *ui_resolution1;
+extern lv_obj_t *ui_Label9;
+extern lv_obj_t *ui_video_name1;
+void ui_event_video_02( lv_event_t * e);
+extern lv_obj_t *ui_video_02;
+extern lv_obj_t *ui_video_title_img2;
+extern lv_obj_t *ui_days2;
+extern lv_obj_t *ui_resolution2;
+extern lv_obj_t *ui_Label6;
+extern lv_obj_t *ui_video_name2;
+void ui_event_video_03( lv_event_t * e);
+extern lv_obj_t *ui_video_03;
+extern lv_obj_t *ui_video_title_img3;
+extern lv_obj_t *ui_days3;
+extern lv_obj_t *ui_resolution3;
+extern lv_obj_t *ui_Label10;
+extern lv_obj_t *ui_video_name3;
+void ui_event_video_04( lv_event_t * e);
+extern lv_obj_t *ui_video_04;
+extern lv_obj_t *ui_video_title_img4;
+extern lv_obj_t *ui_days4;
+extern lv_obj_t *ui_resolution4;
+extern lv_obj_t *ui_Label11;
+extern lv_obj_t *ui_video_name4;
 void ui_event_video_player_panel( lv_event_t * e);
 extern lv_obj_t *ui_video_player_panel;
 extern lv_obj_t *ui_system_ctrl_panel;
@@ -303,10 +304,6 @@ LV_IMG_DECLARE( ui_img_close_png);   // assets\close.png
 LV_IMG_DECLARE( ui_img_scale_png);   // assets\Scale.png
 LV_IMG_DECLARE( ui_img_hide_png);   // assets\hide.png
 LV_IMG_DECLARE( ui_img_head_png);   // assets\head.png
-LV_IMG_DECLARE( ui_img_video1_png);   // assets\video1.png
-LV_IMG_DECLARE( ui_img_video2_png);   // assets\video2.png
-LV_IMG_DECLARE( ui_img_video3_png);   // assets\video3.png
-LV_IMG_DECLARE( ui_img_video4_png);   // assets\video4.png
 LV_IMG_DECLARE( ui_img_album2_png);   // assets\album2.png
 LV_IMG_DECLARE( ui_img_album1_png);   // assets\album1.png
 LV_IMG_DECLARE( ui_img_next_png);   // assets\next.png
@@ -332,6 +329,10 @@ LV_IMG_DECLARE( ui_img_photos5_png);   // assets\photos5.png
 LV_IMG_DECLARE( ui_img_amplify_png);   // assets\amplify.png
 LV_IMG_DECLARE( ui_img_reduce_png);   // assets\reduce.png
 LV_IMG_DECLARE( ui_img_photo_icon_png);   // assets\photo icon.png
+LV_IMG_DECLARE( ui_img_video1_png);   // assets\video1.png
+LV_IMG_DECLARE( ui_img_video2_png);   // assets\video2.png
+LV_IMG_DECLARE( ui_img_video3_png);   // assets\video3.png
+LV_IMG_DECLARE( ui_img_video4_png);   // assets\video4.png
 LV_IMG_DECLARE( ui_img_wifi_13_png);   // assets\wifi_13.png
 LV_IMG_DECLARE( ui_img_ble_png);   // assets\ble.png
 LV_IMG_DECLARE( ui_img_battary_png);   // assets\battary.png

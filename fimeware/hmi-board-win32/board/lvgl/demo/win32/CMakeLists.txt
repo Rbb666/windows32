@@ -7,6 +7,7 @@ SET(SOURCES components/ui_comp_button_pause2.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
+    ui_events.c
     images/ui_img_bg2_png.c
     images/ui_img_win_png.c
     images/ui_img_file_25x25_png.c
@@ -34,10 +35,6 @@ SET(SOURCES components/ui_comp_button_pause2.c
     images/ui_img_scale_png.c
     images/ui_img_hide_png.c
     images/ui_img_head_png.c
-    images/ui_img_video1_png.c
-    images/ui_img_video2_png.c
-    images/ui_img_video3_png.c
-    images/ui_img_video4_png.c
     images/ui_img_album2_png.c
     images/ui_img_album1_png.c
     images/ui_img_next_png.c
@@ -63,6 +60,10 @@ SET(SOURCES components/ui_comp_button_pause2.c
     images/ui_img_amplify_png.c
     images/ui_img_reduce_png.c
     images/ui_img_photo_icon_png.c
+    images/ui_img_video1_png.c
+    images/ui_img_video2_png.c
+    images/ui_img_video3_png.c
+    images/ui_img_video4_png.c
     images/ui_img_wifi_13_png.c
     images/ui_img_ble_png.c
     images/ui_img_battary_png.c

@@ -29,7 +29,7 @@ struct avi_file_info
 } avi_file;
 
 extern AVI_TypeDef AVI_file;
-static uint8_t *v_pbuffer;
+uint8_t *v_pbuffer;
 static int16_t video_width, video_height;
 static uint32_t _REV(uint32_t value)
 {

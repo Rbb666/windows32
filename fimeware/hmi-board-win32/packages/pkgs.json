@@ -10,8 +10,13 @@
   "name": "LVGL"
  }, 
  {
-  "path": "/packages/multimedia/LVGL/lv_music_demo", 
-  "ver": "v0.3.3", 
-  "name": "LV_MUSIC_DEMO"
+  "path": "/packages/multimedia/wavplayer", 
+  "ver": "latest", 
+  "name": "WAVPLAYER"
+ }, 
+ {
+  "path": "/packages/misc/optparse", 
+  "ver": "v1.0.0", 
+  "name": "OPTPARSE"
  }
 ]

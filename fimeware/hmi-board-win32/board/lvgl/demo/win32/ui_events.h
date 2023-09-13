@@ -10,6 +10,9 @@
 extern "C" {
 #endif
 
+void play_music_function(lv_event_t * e);
+void pause_music_function(lv_event_t * e);
+
 #ifdef __cplusplus
 } /*extern "C"*/
 #endif

@@ -135,36 +135,6 @@ lv_obj_t *ui_hide;
 lv_obj_t *ui_Head;
 lv_obj_t *ui_name;
 lv_obj_t *ui_panel_name;
-void ui_event_video_panel( lv_event_t * e);
-lv_obj_t *ui_video_panel;
-void ui_event_video_01( lv_event_t * e);
-lv_obj_t *ui_video_01;
-lv_obj_t *ui_video_title_img1;
-lv_obj_t *ui_days1;
-lv_obj_t *ui_resolution1;
-lv_obj_t *ui_Label9;
-lv_obj_t *ui_video_name1;
-void ui_event_video_02( lv_event_t * e);
-lv_obj_t *ui_video_02;
-lv_obj_t *ui_video_title_img2;
-lv_obj_t *ui_days2;
-lv_obj_t *ui_resolution2;
-lv_obj_t *ui_Label6;
-lv_obj_t *ui_video_name2;
-void ui_event_video_03( lv_event_t * e);
-lv_obj_t *ui_video_03;
-lv_obj_t *ui_video_title_img3;
-lv_obj_t *ui_days3;
-lv_obj_t *ui_resolution3;
-lv_obj_t *ui_Label10;
-lv_obj_t *ui_video_name3;
-void ui_event_video_04( lv_event_t * e);
-lv_obj_t *ui_video_04;
-lv_obj_t *ui_video_title_img4;
-lv_obj_t *ui_days4;
-lv_obj_t *ui_resolution4;
-lv_obj_t *ui_Label11;
-lv_obj_t *ui_video_name4;
 void ui_event_music_panel( lv_event_t * e);
 lv_obj_t *ui_music_panel;
 lv_obj_t *ui_album;
@@ -175,6 +145,7 @@ lv_obj_t *ui_album_card1;
 lv_obj_t *ui_music_title;
 lv_obj_t *ui_author;
 lv_obj_t *ui_next_song;
+void ui_event_play( lv_event_t * e);
 lv_obj_t *ui_play;
 lv_obj_t *ui_pre_song;
 lv_obj_t *ui_music_process;
@@ -215,6 +186,36 @@ lv_obj_t *ui_reduce;
 lv_obj_t *ui_photo_icon;
 void ui_event_photo_close( lv_event_t * e);
 lv_obj_t *ui_photo_close;
+void ui_event_video_panel( lv_event_t * e);
+lv_obj_t *ui_video_panel;
+void ui_event_video_01( lv_event_t * e);
+lv_obj_t *ui_video_01;
+lv_obj_t *ui_video_title_img1;
+lv_obj_t *ui_days1;
+lv_obj_t *ui_resolution1;
+lv_obj_t *ui_Label9;
+lv_obj_t *ui_video_name1;
+void ui_event_video_02( lv_event_t * e);
+lv_obj_t *ui_video_02;
+lv_obj_t *ui_video_title_img2;
+lv_obj_t *ui_days2;
+lv_obj_t *ui_resolution2;
+lv_obj_t *ui_Label6;
+lv_obj_t *ui_video_name2;
+void ui_event_video_03( lv_event_t * e);
+lv_obj_t *ui_video_03;
+lv_obj_t *ui_video_title_img3;
+lv_obj_t *ui_days3;
+lv_obj_t *ui_resolution3;
+lv_obj_t *ui_Label10;
+lv_obj_t *ui_video_name3;
+void ui_event_video_04( lv_event_t * e);
+lv_obj_t *ui_video_04;
+lv_obj_t *ui_video_title_img4;
+lv_obj_t *ui_days4;
+lv_obj_t *ui_resolution4;
+lv_obj_t *ui_Label11;
+lv_obj_t *ui_video_name4;
 void ui_event_video_player_panel( lv_event_t * e);
 lv_obj_t *ui_video_player_panel;
 lv_obj_t *ui_system_ctrl_panel;
@@ -1573,6 +1574,15 @@ lv_indev_wait_release(lv_indev_get_act());
       albumright_Animation(ui_album_card2, 0);
       _ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "Can we kiss forever?");
       _ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Kina/Adriana Proenza");
+}
+}
+void ui_event_play( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      play_music_function( e );
+}
+if ( event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target,LV_STATE_CHECKED)  ) {
+      pause_music_function( e );
 }
 }
 void ui_event_photos_panel( lv_event_t * e) {

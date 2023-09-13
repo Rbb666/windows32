@@ -859,277 +859,6 @@ lv_obj_set_style_text_opa(ui_panel_name, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_align(ui_panel_name, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_text_font(ui_panel_name, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_video_panel = lv_obj_create(ui_main);
-lv_obj_set_width( ui_video_panel, 330);
-lv_obj_set_height( ui_video_panel, 199);
-lv_obj_set_x( ui_video_panel, 0 );
-lv_obj_set_y( ui_video_panel, 1 );
-lv_obj_set_align( ui_video_panel, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_video_panel, LV_OBJ_FLAG_HIDDEN );   /// Flags
-lv_obj_clear_flag( ui_video_panel, LV_OBJ_FLAG_GESTURE_BUBBLE );    /// Flags
-lv_obj_set_style_bg_color(ui_video_panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_video_panel, 240, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_color(ui_video_panel, lv_color_hex(0x343434), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_border_opa(ui_video_panel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_video_panel, 1, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_01 = lv_obj_create(ui_video_panel);
-lv_obj_set_width( ui_video_01, 295);
-lv_obj_set_height( ui_video_01, 80);
-lv_obj_clear_flag( ui_video_01, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_video_01, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_video_01, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_video_01, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_video_01, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_title_img1 = lv_img_create(ui_video_01);
-lv_img_set_src(ui_video_title_img1, &ui_img_video1_png);
-lv_obj_set_width( ui_video_title_img1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_title_img1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_title_img1, -10 );
-lv_obj_set_y( ui_video_title_img1, 0 );
-lv_obj_set_align( ui_video_title_img1, LV_ALIGN_LEFT_MID );
-lv_obj_add_flag( ui_video_title_img1, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_video_title_img1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-
-ui_days1 = lv_label_create(ui_video_01);
-lv_obj_set_width( ui_days1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_days1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_days1, 50 );
-lv_obj_set_y( ui_days1, -7 );
-lv_obj_set_align( ui_days1, LV_ALIGN_CENTER );
-lv_label_set_text(ui_days1,"9-15   3 days ago");
-lv_obj_set_style_text_color(ui_days1, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_days1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_days1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_days1, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_resolution1 = lv_obj_create(ui_video_01);
-lv_obj_set_width( ui_resolution1, 33);
-lv_obj_set_height( ui_resolution1, 15);
-lv_obj_set_x( ui_resolution1, 19 );
-lv_obj_set_y( ui_resolution1, 10 );
-lv_obj_set_align( ui_resolution1, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_resolution1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_resolution1, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_resolution1, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_resolution1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_resolution1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_Label9 = lv_label_create(ui_resolution1);
-lv_obj_set_width( ui_Label9, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label9, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_Label9, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label9,"480P");
-lv_obj_set_style_text_font(ui_Label9, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_name1 = lv_label_create(ui_video_01);
-lv_obj_set_width( ui_video_name1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_name1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_name1, 0 );
-lv_obj_set_y( ui_video_name1, -24 );
-lv_obj_set_align( ui_video_name1, LV_ALIGN_RIGHT_MID );
-lv_label_set_text(ui_video_name1,"Jujutsu Kaisen 01");
-lv_obj_set_style_text_color(ui_video_name1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_video_name1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_video_name1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_video_name1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_02 = lv_obj_create(ui_video_panel);
-lv_obj_set_width( ui_video_02, 295);
-lv_obj_set_height( ui_video_02, 80);
-lv_obj_set_x( ui_video_02, 0 );
-lv_obj_set_y( ui_video_02, 45 );
-lv_obj_set_align( ui_video_02, LV_ALIGN_CENTER );
-lv_obj_clear_flag( ui_video_02, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_video_02, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_video_02, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_video_02, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_video_02, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_title_img2 = lv_img_create(ui_video_02);
-lv_img_set_src(ui_video_title_img2, &ui_img_video2_png);
-lv_obj_set_width( ui_video_title_img2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_title_img2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_title_img2, -10 );
-lv_obj_set_y( ui_video_title_img2, 0 );
-lv_obj_set_align( ui_video_title_img2, LV_ALIGN_LEFT_MID );
-lv_obj_add_flag( ui_video_title_img2, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_video_title_img2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-
-ui_days2 = lv_label_create(ui_video_02);
-lv_obj_set_width( ui_days2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_days2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_days2, 50 );
-lv_obj_set_y( ui_days2, -7 );
-lv_obj_set_align( ui_days2, LV_ALIGN_CENTER );
-lv_label_set_text(ui_days2,"9-17   2 days ago");
-lv_obj_set_style_text_color(ui_days2, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_days2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_days2, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_days2, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_resolution2 = lv_obj_create(ui_video_02);
-lv_obj_set_width( ui_resolution2, 33);
-lv_obj_set_height( ui_resolution2, 15);
-lv_obj_set_x( ui_resolution2, 19 );
-lv_obj_set_y( ui_resolution2, 10 );
-lv_obj_set_align( ui_resolution2, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_resolution2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_resolution2, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_resolution2, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_resolution2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_resolution2, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_Label6 = lv_label_create(ui_resolution2);
-lv_obj_set_width( ui_Label6, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label6, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_Label6, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label6,"480P");
-lv_obj_set_style_text_font(ui_Label6, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_name2 = lv_label_create(ui_video_02);
-lv_obj_set_width( ui_video_name2, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_name2, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_name2, 0 );
-lv_obj_set_y( ui_video_name2, -24 );
-lv_obj_set_align( ui_video_name2, LV_ALIGN_RIGHT_MID );
-lv_label_set_text(ui_video_name2,"Jujutsu Kaisen 02");
-lv_obj_set_style_text_color(ui_video_name2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_video_name2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_video_name2, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_video_name2, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_03 = lv_obj_create(ui_video_panel);
-lv_obj_set_width( ui_video_03, 295);
-lv_obj_set_height( ui_video_03, 80);
-lv_obj_set_x( ui_video_03, 0 );
-lv_obj_set_y( ui_video_03, 90 );
-lv_obj_set_align( ui_video_03, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_video_03, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_video_03, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_video_03, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_video_03, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_video_03, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_title_img3 = lv_img_create(ui_video_03);
-lv_img_set_src(ui_video_title_img3, &ui_img_video3_png);
-lv_obj_set_width( ui_video_title_img3, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_title_img3, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_title_img3, -10 );
-lv_obj_set_y( ui_video_title_img3, 0 );
-lv_obj_set_align( ui_video_title_img3, LV_ALIGN_LEFT_MID );
-lv_obj_add_flag( ui_video_title_img3, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_video_title_img3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-
-ui_days3 = lv_label_create(ui_video_03);
-lv_obj_set_width( ui_days3, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_days3, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_days3, 50 );
-lv_obj_set_y( ui_days3, -7 );
-lv_obj_set_align( ui_days3, LV_ALIGN_CENTER );
-lv_label_set_text(ui_days3,"9-18   1 days ago");
-lv_obj_set_style_text_color(ui_days3, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_days3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_days3, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_days3, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_resolution3 = lv_obj_create(ui_video_03);
-lv_obj_set_width( ui_resolution3, 33);
-lv_obj_set_height( ui_resolution3, 15);
-lv_obj_set_x( ui_resolution3, 19 );
-lv_obj_set_y( ui_resolution3, 10 );
-lv_obj_set_align( ui_resolution3, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_resolution3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_resolution3, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_resolution3, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_resolution3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_resolution3, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_Label10 = lv_label_create(ui_resolution3);
-lv_obj_set_width( ui_Label10, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label10, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_Label10, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label10,"480P");
-lv_obj_set_style_text_font(ui_Label10, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_name3 = lv_label_create(ui_video_03);
-lv_obj_set_width( ui_video_name3, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_name3, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_name3, 0 );
-lv_obj_set_y( ui_video_name3, -24 );
-lv_obj_set_align( ui_video_name3, LV_ALIGN_RIGHT_MID );
-lv_label_set_text(ui_video_name3,"Jujutsu Kaisen 03");
-lv_obj_set_style_text_color(ui_video_name3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_video_name3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_video_name3, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_video_name3, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_04 = lv_obj_create(ui_video_panel);
-lv_obj_set_width( ui_video_04, 295);
-lv_obj_set_height( ui_video_04, 80);
-lv_obj_set_x( ui_video_04, 0 );
-lv_obj_set_y( ui_video_04, 180 );
-lv_obj_set_align( ui_video_04, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_video_04, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_video_04, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_video_04, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_video_04, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_video_04, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_title_img4 = lv_img_create(ui_video_04);
-lv_img_set_src(ui_video_title_img4, &ui_img_video4_png);
-lv_obj_set_width( ui_video_title_img4, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_title_img4, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_title_img4, -10 );
-lv_obj_set_y( ui_video_title_img4, 0 );
-lv_obj_set_align( ui_video_title_img4, LV_ALIGN_LEFT_MID );
-lv_obj_add_flag( ui_video_title_img4, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_video_title_img4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-
-ui_days4 = lv_label_create(ui_video_04);
-lv_obj_set_width( ui_days4, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_days4, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_days4, 50 );
-lv_obj_set_y( ui_days4, -7 );
-lv_obj_set_align( ui_days4, LV_ALIGN_CENTER );
-lv_label_set_text(ui_days4,"9-18   1 days ago");
-lv_obj_set_style_text_color(ui_days4, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_days4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_days4, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_days4, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_resolution4 = lv_obj_create(ui_video_04);
-lv_obj_set_width( ui_resolution4, 33);
-lv_obj_set_height( ui_resolution4, 15);
-lv_obj_set_x( ui_resolution4, 19 );
-lv_obj_set_y( ui_resolution4, 10 );
-lv_obj_set_align( ui_resolution4, LV_ALIGN_BOTTOM_MID );
-lv_obj_clear_flag( ui_resolution4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
-lv_obj_set_style_radius(ui_resolution4, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_bg_color(ui_resolution4, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_resolution4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_border_width(ui_resolution4, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_Label11 = lv_label_create(ui_resolution4);
-lv_obj_set_width( ui_Label11, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_Label11, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_Label11, LV_ALIGN_CENTER );
-lv_label_set_text(ui_Label11,"480P");
-lv_obj_set_style_text_font(ui_Label11, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
-
-ui_video_name4 = lv_label_create(ui_video_04);
-lv_obj_set_width( ui_video_name4, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_video_name4, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_x( ui_video_name4, 0 );
-lv_obj_set_y( ui_video_name4, -24 );
-lv_obj_set_align( ui_video_name4, LV_ALIGN_RIGHT_MID );
-lv_label_set_text(ui_video_name4,"Chainsaw Man 01");
-lv_obj_set_style_text_color(ui_video_name4, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_text_opa(ui_video_name4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_align(ui_video_name4, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
-lv_obj_set_style_text_font(ui_video_name4, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
-
 ui_music_panel = lv_obj_create(ui_main);
 lv_obj_set_width( ui_music_panel, 330);
 lv_obj_set_height( ui_music_panel, 199);
@@ -1501,6 +1230,277 @@ lv_obj_set_y( ui_photo_close, -10 );
 lv_obj_set_align( ui_photo_close, LV_ALIGN_TOP_RIGHT );
 lv_obj_add_flag( ui_photo_close, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
 lv_obj_clear_flag( ui_photo_close, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_video_panel = lv_obj_create(ui_main);
+lv_obj_set_width( ui_video_panel, 330);
+lv_obj_set_height( ui_video_panel, 199);
+lv_obj_set_x( ui_video_panel, 0 );
+lv_obj_set_y( ui_video_panel, 1 );
+lv_obj_set_align( ui_video_panel, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_video_panel, LV_OBJ_FLAG_HIDDEN );   /// Flags
+lv_obj_clear_flag( ui_video_panel, LV_OBJ_FLAG_GESTURE_BUBBLE );    /// Flags
+lv_obj_set_style_bg_color(ui_video_panel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_video_panel, 240, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_color(ui_video_panel, lv_color_hex(0x343434), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_border_opa(ui_video_panel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_video_panel, 1, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_01 = lv_obj_create(ui_video_panel);
+lv_obj_set_width( ui_video_01, 295);
+lv_obj_set_height( ui_video_01, 80);
+lv_obj_clear_flag( ui_video_01, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_video_01, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_video_01, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_video_01, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_video_01, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_title_img1 = lv_img_create(ui_video_01);
+lv_img_set_src(ui_video_title_img1, &ui_img_video1_png);
+lv_obj_set_width( ui_video_title_img1, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_title_img1, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_title_img1, -10 );
+lv_obj_set_y( ui_video_title_img1, 0 );
+lv_obj_set_align( ui_video_title_img1, LV_ALIGN_LEFT_MID );
+lv_obj_add_flag( ui_video_title_img1, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_video_title_img1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_days1 = lv_label_create(ui_video_01);
+lv_obj_set_width( ui_days1, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_days1, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_days1, 50 );
+lv_obj_set_y( ui_days1, -7 );
+lv_obj_set_align( ui_days1, LV_ALIGN_CENTER );
+lv_label_set_text(ui_days1,"9-15   3 days ago");
+lv_obj_set_style_text_color(ui_days1, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_days1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_days1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_days1, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_resolution1 = lv_obj_create(ui_video_01);
+lv_obj_set_width( ui_resolution1, 33);
+lv_obj_set_height( ui_resolution1, 15);
+lv_obj_set_x( ui_resolution1, 19 );
+lv_obj_set_y( ui_resolution1, 10 );
+lv_obj_set_align( ui_resolution1, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_resolution1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_resolution1, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_resolution1, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_resolution1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_resolution1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_Label9 = lv_label_create(ui_resolution1);
+lv_obj_set_width( ui_Label9, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label9, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label9, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label9,"480P");
+lv_obj_set_style_text_font(ui_Label9, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_name1 = lv_label_create(ui_video_01);
+lv_obj_set_width( ui_video_name1, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_name1, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_name1, 0 );
+lv_obj_set_y( ui_video_name1, -24 );
+lv_obj_set_align( ui_video_name1, LV_ALIGN_RIGHT_MID );
+lv_label_set_text(ui_video_name1,"Jujutsu Kaisen 01");
+lv_obj_set_style_text_color(ui_video_name1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_video_name1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_video_name1, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_video_name1, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_02 = lv_obj_create(ui_video_panel);
+lv_obj_set_width( ui_video_02, 295);
+lv_obj_set_height( ui_video_02, 80);
+lv_obj_set_x( ui_video_02, 0 );
+lv_obj_set_y( ui_video_02, 45 );
+lv_obj_set_align( ui_video_02, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_video_02, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_video_02, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_video_02, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_video_02, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_video_02, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_title_img2 = lv_img_create(ui_video_02);
+lv_img_set_src(ui_video_title_img2, &ui_img_video2_png);
+lv_obj_set_width( ui_video_title_img2, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_title_img2, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_title_img2, -10 );
+lv_obj_set_y( ui_video_title_img2, 0 );
+lv_obj_set_align( ui_video_title_img2, LV_ALIGN_LEFT_MID );
+lv_obj_add_flag( ui_video_title_img2, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_video_title_img2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_days2 = lv_label_create(ui_video_02);
+lv_obj_set_width( ui_days2, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_days2, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_days2, 50 );
+lv_obj_set_y( ui_days2, -7 );
+lv_obj_set_align( ui_days2, LV_ALIGN_CENTER );
+lv_label_set_text(ui_days2,"9-17   2 days ago");
+lv_obj_set_style_text_color(ui_days2, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_days2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_days2, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_days2, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_resolution2 = lv_obj_create(ui_video_02);
+lv_obj_set_width( ui_resolution2, 33);
+lv_obj_set_height( ui_resolution2, 15);
+lv_obj_set_x( ui_resolution2, 19 );
+lv_obj_set_y( ui_resolution2, 10 );
+lv_obj_set_align( ui_resolution2, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_resolution2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_resolution2, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_resolution2, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_resolution2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_resolution2, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_Label6 = lv_label_create(ui_resolution2);
+lv_obj_set_width( ui_Label6, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label6, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label6, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label6,"480P");
+lv_obj_set_style_text_font(ui_Label6, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_name2 = lv_label_create(ui_video_02);
+lv_obj_set_width( ui_video_name2, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_name2, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_name2, 0 );
+lv_obj_set_y( ui_video_name2, -24 );
+lv_obj_set_align( ui_video_name2, LV_ALIGN_RIGHT_MID );
+lv_label_set_text(ui_video_name2,"Jujutsu Kaisen 02");
+lv_obj_set_style_text_color(ui_video_name2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_video_name2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_video_name2, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_video_name2, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_03 = lv_obj_create(ui_video_panel);
+lv_obj_set_width( ui_video_03, 295);
+lv_obj_set_height( ui_video_03, 80);
+lv_obj_set_x( ui_video_03, 0 );
+lv_obj_set_y( ui_video_03, 90 );
+lv_obj_set_align( ui_video_03, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_video_03, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_video_03, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_video_03, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_video_03, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_video_03, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_title_img3 = lv_img_create(ui_video_03);
+lv_img_set_src(ui_video_title_img3, &ui_img_video3_png);
+lv_obj_set_width( ui_video_title_img3, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_title_img3, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_title_img3, -10 );
+lv_obj_set_y( ui_video_title_img3, 0 );
+lv_obj_set_align( ui_video_title_img3, LV_ALIGN_LEFT_MID );
+lv_obj_add_flag( ui_video_title_img3, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_video_title_img3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_days3 = lv_label_create(ui_video_03);
+lv_obj_set_width( ui_days3, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_days3, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_days3, 50 );
+lv_obj_set_y( ui_days3, -7 );
+lv_obj_set_align( ui_days3, LV_ALIGN_CENTER );
+lv_label_set_text(ui_days3,"9-18   1 days ago");
+lv_obj_set_style_text_color(ui_days3, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_days3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_days3, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_days3, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_resolution3 = lv_obj_create(ui_video_03);
+lv_obj_set_width( ui_resolution3, 33);
+lv_obj_set_height( ui_resolution3, 15);
+lv_obj_set_x( ui_resolution3, 19 );
+lv_obj_set_y( ui_resolution3, 10 );
+lv_obj_set_align( ui_resolution3, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_resolution3, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_resolution3, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_resolution3, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_resolution3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_resolution3, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_Label10 = lv_label_create(ui_resolution3);
+lv_obj_set_width( ui_Label10, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label10, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label10, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label10,"480P");
+lv_obj_set_style_text_font(ui_Label10, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_name3 = lv_label_create(ui_video_03);
+lv_obj_set_width( ui_video_name3, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_name3, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_name3, 0 );
+lv_obj_set_y( ui_video_name3, -24 );
+lv_obj_set_align( ui_video_name3, LV_ALIGN_RIGHT_MID );
+lv_label_set_text(ui_video_name3,"Jujutsu Kaisen 03");
+lv_obj_set_style_text_color(ui_video_name3, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_video_name3, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_video_name3, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_video_name3, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_04 = lv_obj_create(ui_video_panel);
+lv_obj_set_width( ui_video_04, 295);
+lv_obj_set_height( ui_video_04, 80);
+lv_obj_set_x( ui_video_04, 0 );
+lv_obj_set_y( ui_video_04, 180 );
+lv_obj_set_align( ui_video_04, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_video_04, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_video_04, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_video_04, lv_color_hex(0x313131), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_video_04, 200, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_video_04, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_title_img4 = lv_img_create(ui_video_04);
+lv_img_set_src(ui_video_title_img4, &ui_img_video4_png);
+lv_obj_set_width( ui_video_title_img4, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_title_img4, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_title_img4, -10 );
+lv_obj_set_y( ui_video_title_img4, 0 );
+lv_obj_set_align( ui_video_title_img4, LV_ALIGN_LEFT_MID );
+lv_obj_add_flag( ui_video_title_img4, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_video_title_img4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_days4 = lv_label_create(ui_video_04);
+lv_obj_set_width( ui_days4, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_days4, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_days4, 50 );
+lv_obj_set_y( ui_days4, -7 );
+lv_obj_set_align( ui_days4, LV_ALIGN_CENTER );
+lv_label_set_text(ui_days4,"9-18   1 days ago");
+lv_obj_set_style_text_color(ui_days4, lv_color_hex(0x919191), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_days4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_days4, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_days4, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_resolution4 = lv_obj_create(ui_video_04);
+lv_obj_set_width( ui_resolution4, 33);
+lv_obj_set_height( ui_resolution4, 15);
+lv_obj_set_x( ui_resolution4, 19 );
+lv_obj_set_y( ui_resolution4, 10 );
+lv_obj_set_align( ui_resolution4, LV_ALIGN_BOTTOM_MID );
+lv_obj_clear_flag( ui_resolution4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_resolution4, 2, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_resolution4, lv_color_hex(0x717171), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_resolution4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_resolution4, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_Label11 = lv_label_create(ui_resolution4);
+lv_obj_set_width( ui_Label11, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label11, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label11, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label11,"480P");
+lv_obj_set_style_text_font(ui_Label11, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_video_name4 = lv_label_create(ui_video_04);
+lv_obj_set_width( ui_video_name4, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_video_name4, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_x( ui_video_name4, 0 );
+lv_obj_set_y( ui_video_name4, -24 );
+lv_obj_set_align( ui_video_name4, LV_ALIGN_RIGHT_MID );
+lv_label_set_text(ui_video_name4,"Chainsaw Man 01");
+lv_obj_set_style_text_color(ui_video_name4, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_video_name4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_video_name4, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_video_name4, &lv_font_montserrat_14, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_video_player_panel = lv_obj_create(ui_main);
 lv_obj_set_width( ui_video_player_panel, 480);
@@ -2011,13 +2011,9 @@ lv_obj_add_event_cb(ui_main_filesys_panel, ui_event_main_filesys_panel, LV_EVENT
 lv_obj_add_event_cb(ui_close, ui_event_close, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_scale, ui_event_scale, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_hide, ui_event_hide, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_video_01, ui_event_video_01, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_video_02, ui_event_video_02, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_video_03, ui_event_video_03, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_video_04, ui_event_video_04, LV_EVENT_ALL, NULL);
-lv_obj_add_event_cb(ui_video_panel, ui_event_video_panel, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_album_card2, ui_event_album_card2, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_album_card1, ui_event_album_card1, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_play, ui_event_play, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_music_panel, ui_event_music_panel, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_photo_s1, ui_event_photo_s1, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_photo_s2, ui_event_photo_s2, LV_EVENT_ALL, NULL);
@@ -2033,6 +2029,11 @@ lv_obj_add_event_cb(ui_photo_small3, ui_event_photo_small3, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_photo_small4, ui_event_photo_small4, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_photo_small5, ui_event_photo_small5, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_photo_close, ui_event_photo_close, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_video_01, ui_event_video_01, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_video_02, ui_event_video_02, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_video_03, ui_event_video_03, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_video_04, ui_event_video_04, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_video_panel, ui_event_video_panel, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_video_player_panel, ui_event_video_player_panel, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_wifi_control, ui_event_wifi_control, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_ble_control, ui_event_ble_control, LV_EVENT_ALL, NULL);
