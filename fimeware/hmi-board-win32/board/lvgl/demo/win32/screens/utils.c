@@ -1,5 +1,3 @@
-#include "player.h"
-#include "wlan_mgnt.h"
 #include "utils.h"
 #include "lvgl.h"
 
@@ -130,6 +128,21 @@ int WiFi_Join(const char *ssid, const char *password)
     return 0;
 }
 
+void backlight_setvalue(int value)
+{
+#define LCD_PWM_DEV_NAME    "pwm5"
+#define LCD_PWM_DEV_CHANNEL 0
+
+    struct rt_device_pwm *pwm_dev;
+    
+    if (value < 3000) value = 3000;
+    /* turn on the LCD backlight */
+    pwm_dev = (struct rt_device_pwm *)rt_device_find(LCD_PWM_DEV_NAME);
+    /* pwm frequency:100K = 10000ns */
+    rt_pwm_set(pwm_dev, LCD_PWM_DEV_CHANNEL, 10000, value);
+    rt_pwm_enable(pwm_dev, LCD_PWM_DEV_CHANNEL);
+}  
+
 void palyer_list_clear(player_t p)
 {
     LOG_I("palyer_list_clear..");
@@ -141,6 +154,7 @@ void palyer_list_clear(player_t p)
         if (p->video_list[i] != RT_NULL)
         {
             LOG_I("DEL: %s", p->video_list[i]);
+            rt_free(p->video_list[i]);
             p->video_list[i] = RT_NULL;
         }
     }

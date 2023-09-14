@@ -7,7 +7,6 @@ SET(SOURCES components/ui_comp_button_pause2.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    ui_events.c
     images/ui_img_bg2_png.c
     images/ui_img_win_png.c
     images/ui_img_file_25x25_png.c
@@ -38,8 +37,8 @@ SET(SOURCES components/ui_comp_button_pause2.c
     images/ui_img_album2_png.c
     images/ui_img_album1_png.c
     images/ui_img_next_png.c
-    images/ui_img_play_png.c
     images/ui_img_suspend_png.c
+    images/ui_img_play_png.c
     images/ui_img_previous__png.c
     images/ui_img_knob_png.c
     images/ui_img_like_png.c

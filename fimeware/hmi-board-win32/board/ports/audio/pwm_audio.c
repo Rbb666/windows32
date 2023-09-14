@@ -256,10 +256,6 @@ rt_err_t pwm_audio_init(const pwm_audio_config_t *cfg)
     R_GPT_Open(handle->pwm_timer_ctrl, &handle->pwm_timer_cfg);
     R_GPT_Start(handle->pwm_timer_ctrl);
     //
-
-    /**< set a initial parameter */
-//    res = pwm_audio_set_param(16000, 8, 2);
-
     handle->status = PWM_AUDIO_STATUS_IDLE;
 
     rt_hw_interrupt_enable(level);

@@ -10,62 +10,40 @@
 #include <wavhdr.h>
 #include <string.h>
 #include <rtthread.h>
+#include <unistd.h>
 
 /* read and write integer from file stream */
-static int get_int(FILE *fp)
+static int get_int(int fp)
 {
-    char *s;
     int i;
-    s = (char *)&i;
-    size_t len = sizeof(int);
-    int n = 0;
-    for (; n < len; n++)
-    {
-        s[n] = getc(fp);
-    }
+    ssize_t bytesRead = read(fp, &i, sizeof(int));
+    if (bytesRead != sizeof(int))
+        return -1;
     return i;
 }
 
-static int put_int(int i, FILE *fp)
+static int put_int(int i, int fp)
 {
-    char *s;
-    s = (char *)&i;
-    size_t len = sizeof(int);
-    int n = 0;
-    for (; n < len; n++)
-    {
-        putc(s[n], fp);
-    }
-
+    ssize_t bytesWritten = write(fp, &i, sizeof(int));
+    if (bytesWritten != sizeof(int))
+        return -1;
     return i;
 }
 
-static short int get_sint(FILE *fp)
+static short int get_sint(int fp)
 {
-    char *s;
     short int i;
-    s = (char *)&i;
-    size_t len = sizeof(short);
-    int n = 0;
-    for (; n < len; n++)
-    {
-        s[n] = getc(fp);
-    }
-
+    ssize_t bytesRead = read(fp, &i, sizeof(short));
+    if (bytesRead != sizeof(short))
+        return -1;
     return i;
 }
 
-static short int put_sint(short int i, FILE *fp)
+static short int put_sint(short int i, int fp)
 {
-    char *s;
-    s = (char *)&i;
-    size_t len = sizeof(short);
-    int n = 0;
-    for (; n < len; n++)
-    {
-        putc(s[n], fp);
-    };
-
+    ssize_t bytesWritten = write(fp, &i, sizeof(short));
+    if (bytesWritten != sizeof(short))
+        return -1;
     return i;
 }
 
@@ -94,15 +72,15 @@ int wavheader_init(struct wav_header *header, int sample_rate, int channels, int
     return 0;
 }
 
-int wavheader_read(struct wav_header *header, FILE *fp)
+int wavheader_read(struct wav_header *header, int fp)
 {
-    if (fp == NULL)
+    if (fp < 0)
         return -1;
 
-    fread(header->riff_id, 4, 1, fp);
+    read(fp, header->riff_id, 4);
     header->riff_datasize = get_int(fp);
-    fread(header->riff_type, 4, 1, fp);
-    fread(header->fmt_id, 4, 1, fp);
+    read(fp, header->riff_type, 4);
+    read(fp, header->fmt_id, 4);
     header->fmt_datasize = get_int(fp);
     header->fmt_compression_code = get_sint(fp);
     header->fmt_channels = get_sint(fp);
@@ -110,21 +88,21 @@ int wavheader_read(struct wav_header *header, FILE *fp)
     header->fmt_avg_bytes_per_sec = get_int(fp);
     header->fmt_block_align = get_sint(fp);
     header->fmt_bit_per_sample = get_sint(fp);
-    fread(header->data_id, 4, 1, fp);
+    read(fp, header->data_id, 4);
     header->data_datasize = get_int(fp);
 
     return 0;
 }
 
-int wavheader_write(struct wav_header *header, FILE *fp)
+int wavheader_write(struct wav_header *header, int fp)
 {
-    if (fp == NULL)
+    if (fp < 0)
         return -1;
 
-    fwrite(header->riff_id, 4, 1, fp);
+    write(fp, header->riff_id, 4);
     put_int(header->riff_datasize, fp);
-    fwrite(header->riff_type, 4, 1, fp);
-    fwrite(header->fmt_id, 4, 1, fp);
+    write(fp, header->riff_type, 4);
+    write(fp, header->fmt_id, 4);
     put_int(header->fmt_datasize, fp);
     put_sint(header->fmt_compression_code, fp);
     put_sint(header->fmt_channels, fp);
@@ -132,7 +110,7 @@ int wavheader_write(struct wav_header *header, FILE *fp)
     put_int(header->fmt_avg_bytes_per_sec, fp);
     put_sint(header->fmt_block_align, fp);
     put_sint(header->fmt_bit_per_sample, fp);
-    fwrite(header->data_id, 4, 1, fp);
+    write(fp, header->data_id, 4);
     put_int(header->data_datasize, fp);
 
     return 0;

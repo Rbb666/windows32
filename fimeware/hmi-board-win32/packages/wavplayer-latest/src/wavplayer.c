@@ -11,6 +11,8 @@
 #include <rtdevice.h>
 #include <wavhdr.h>
 #include <wavplayer.h>
+#include <unistd.h>
+#include <dfs_file.h>
 
 #include "pwm_audio.h"
 
@@ -18,11 +20,11 @@
 #define DBG_LVL              DBG_INFO
 #include <rtdbg.h>
 
-#define VOLUME_MIN (0)
-#define VOLUME_MAX (99)
+#define VOLUME_MIN (-16)
+#define VOLUME_MAX (16)
 
 #define WP_BUFFER_SIZE (2048)
-#define WP_VOLUME_DEFAULT (55)
+#define WP_VOLUME_DEFAULT (0)
 #define WP_MSG_SIZE (10)
 #define WP_THREAD_STATCK_SIZE (2048)
 #define WP_THREAD_PRIORITY (15)
@@ -60,7 +62,7 @@ struct wavplayer
     rt_mq_t mq;
     rt_mutex_t lock;
     struct rt_completion ack;
-    FILE *fp;
+    int fp;
     int volume;
 };
 
@@ -189,17 +191,13 @@ int wavplayer_volume_set(int volume)
     else if (volume > VOLUME_MAX)
         volume = VOLUME_MAX;
 
-    player.device = rt_device_find(PKG_WP_PLAY_DEVICE);
-    if (player.device == RT_NULL)
-        return -RT_ERROR;
-
     player.volume = volume;
     caps.main_type = AUDIO_TYPE_MIXER;
     caps.sub_type  = AUDIO_MIXER_VOLUME;
     caps.udata.value = volume;
 
-    LOG_D("set volume = %d", volume);
-    return rt_device_control(player.device, AUDIO_CTL_CONFIGURE, &caps);
+    LOG_I("set volume = %d", volume);
+    return pwm_audio_set_volume(volume);;
 }
 
 int wavplayer_volume_get(void)
@@ -217,6 +215,18 @@ char *wavplayer_uri_get(void)
     return player.uri;
 }
 
+#include "pwm_audio.h"
+static void audio_init()
+{
+    pwm_audio_config_t pac;
+    pac.duty_resolution    = 10;
+    pac.gpio_num_left      = 1;
+    pac.gpio_num_right     = -1;
+    pac.ringbuf_len        = 1024 * 8;
+
+    pwm_audio_init(&pac);    
+}
+
 static rt_err_t wavplayer_open(struct wavplayer *player)
 {
     rt_err_t result = RT_EOK;
@@ -224,38 +234,26 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
     struct wav_header wav;
 
     /* find device */
-//    player->device = rt_device_find(PKG_WP_PLAY_DEVICE);
-//    if (player->device == RT_NULL)
-//    {
-//        LOG_E("device %s not find", PKG_WP_PLAY_DEVICE);
-//        return - RT_ERROR;
-//    }
-
     /* open file */
-    player->fp = fopen(player->uri, "rb");
-    if (player->fp == RT_NULL)
+    player->fp = open(player->uri, O_RDONLY);
+    if (player->fp < 0)
     {
         LOG_E("open file %s failed", player->uri);
         result = -RT_ERROR;
         goto __exit;
     }
 
-    /* open sound device */
-//    result = rt_device_open(player->device, RT_DEVICE_OFLAG_WRONLY);
-//    if (result != RT_EOK)
-//    {
-//        LOG_E("open %s device faield", PKG_WP_PLAY_DEVICE);
-//        goto __exit;
-//    }
+    /* Audio Init */
+    audio_init();
 
-    LOG_D("open wavplayer, device %s", PKG_WP_PLAY_DEVICE);
+    LOG_I("open wavplayer, device %s", PKG_WP_PLAY_DEVICE);
     /* read wavfile header information from file */
     wavheader_read(&wav, player->fp);
 
-    LOG_D("Information:");
-    LOG_D("samplerate %d", wav.fmt_sample_rate);
-    LOG_D("channels %d", wav.fmt_channels);
-    LOG_D("sample bits width %d", wav.fmt_bit_per_sample);
+    LOG_I("Information:");
+    LOG_I("samplerate %d", wav.fmt_sample_rate);
+    LOG_I("channels %d", wav.fmt_channels);
+    LOG_I("sample bits width %d", wav.fmt_bit_per_sample);
 
     /* set sampletate,channels, samplebits */
     caps.main_type = AUDIO_TYPE_OUTPUT;
@@ -263,28 +261,23 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
     caps.udata.config.samplerate = wav.fmt_sample_rate;
     caps.udata.config.channels = wav.fmt_channels;
     caps.udata.config.samplebits = wav.fmt_bit_per_sample;
-    //rt_device_control(player->device, AUDIO_CTL_CONFIGURE, &caps);
+    pwm_audio_set_param(wav.fmt_sample_rate, wav.fmt_bit_per_sample, wav.fmt_channels);
 
     /* set volume according to configuration */
     caps.main_type = AUDIO_TYPE_MIXER;
     caps.sub_type  = AUDIO_MIXER_VOLUME;
     caps.udata.value = player->volume;
-    //rt_device_control(player->device, AUDIO_CTL_CONFIGURE, &caps);
+    pwm_audio_set_volume(player->volume);
 
     return RT_EOK;
 
 __exit:
     if (player->fp)
     {
-        fclose(player->fp);
-        player->fp = RT_NULL;
+        close(player->fp);
     }
 
-//    if (player->device)
-//    {
-//        rt_device_close(player->device);
-//        player->device = RT_NULL;
-//    }
+    pwm_audio_deinit();
 
     return result;
 }
@@ -294,17 +287,12 @@ static void wavplayer_close(struct wavplayer *player)
 {
     if (player->fp)
     {
-        fclose(player->fp);
-        player->fp = RT_NULL;
+        close(player->fp);
     }
 
-//    if (player->device)
-//    {
-//        rt_device_close(player->device);
-//        player->device = RT_NULL;
-//    }
+    pwm_audio_deinit();
 
-    LOG_D("close wavplayer");
+    LOG_I("close wavplayer");
 }
 
 static int wavplayer_event_handler(struct wavplayer *player, int timeout)
@@ -317,7 +305,7 @@ static int wavplayer_event_handler(struct wavplayer *player, int timeout)
 #endif
 
     result = rt_mq_recv(player->mq, &msg, sizeof(struct play_msg), timeout);
-    if (result != RT_EOK)
+    if (result == RT_NULL)
     {
         event = PLAYER_EVENT_NONE;
         return event;
@@ -345,7 +333,7 @@ static int wavplayer_event_handler(struct wavplayer *player, int timeout)
         break;
 
     case MSG_RESUME:
-        event = PLAYER_EVENT_RESUME;
+        event = PLAYER_EVENT_NONE;
         player->state = PLAYER_STATE_PLAYING;
         break;
 
@@ -355,9 +343,8 @@ static int wavplayer_event_handler(struct wavplayer *player, int timeout)
     }
 
     rt_completion_done(&player->ack);
-
 #if (DBG_LEVEL >= DBG_LOG)
-    LOG_D("EVENT:%s, STATE:%s -> %s", event_str[event], state_str[last_state], state_str[player->state]);
+    LOG_I("EVENT:%s, STATE:%s -> %s", event_str[event], state_str[last_state], state_str[player->state]);
 #endif
 
     return event;
@@ -410,8 +397,8 @@ static void wavplayer_entry(void *parameter)
             case PLAYER_EVENT_NONE:
             {
                 /* read raw data from file stream */
-                size = fread(player.buffer, WP_BUFFER_SIZE, 1, player.fp);
-                if (size != 1)
+                size = read(player.fp, player.buffer, WP_BUFFER_SIZE);
+                if (size == 0)
                 {
                     /* FILE END*/
                     player.state = PLAYER_STATE_STOPED;
@@ -419,8 +406,6 @@ static void wavplayer_entry(void *parameter)
                 else
                 {
                     /*witte data to sound device*/
-                    //rt_device_write(player.device, 0, player.buffer, WP_BUFFER_SIZE);
-					
 					size_t cnt;
 					pwm_audio_write((uint8_t *)player.buffer, WP_BUFFER_SIZE, &cnt, 500);
                 }

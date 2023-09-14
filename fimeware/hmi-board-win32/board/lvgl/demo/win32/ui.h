@@ -16,6 +16,7 @@ extern "C" {
 #include "components/ui_comp.h"
 #include "components/ui_comp_hook.h"
 #include "ui_events.h"
+#include "utils.h"
 void turnon_Animation( lv_obj_t *TargetObject, int delay);
 void passed_Animation( lv_obj_t *TargetObject, int delay);
 void turndown_Animation( lv_obj_t *TargetObject, int delay);
@@ -241,7 +242,9 @@ extern lv_obj_t *ui_mode_control;
 extern lv_obj_t *ui_ble_icon2;
 extern lv_obj_t *ui_wifi_icon4;
 extern lv_obj_t *ui_midline3;
+void ui_event_backlight_control__slider( lv_event_t * e);
 extern lv_obj_t *ui_backlight_control__slider;
+void ui_event_voice_control__slider( lv_event_t * e);
 extern lv_obj_t *ui_voice_control__slider;
 extern lv_obj_t *ui_Image5;
 extern lv_obj_t *ui_Image6;
@@ -273,6 +276,7 @@ extern lv_obj_t *ui_wallpaper_img1;
 void ui_event_wallpaper_img2( lv_event_t * e);
 extern lv_obj_t *ui_wallpaper_img2;
 extern lv_obj_t *ui_backlight_setting;
+void ui_event_backlight_Slider( lv_event_t * e);
 extern lv_obj_t *ui_backlight_Slider;
 extern lv_obj_t *ui____initial_actions0;
 
@@ -309,6 +313,7 @@ LV_IMG_DECLARE( ui_img_album1_png);   // assets\album1.png
 LV_IMG_DECLARE( ui_img_next_png);   // assets\next.png
 LV_IMG_DECLARE( ui_img_play_png);   // assets\play.png
 LV_IMG_DECLARE( ui_img_suspend_png);   // assets\suspend.png
+LV_IMG_DECLARE( ui_img_play_png);   // assets\play.png
 LV_IMG_DECLARE( ui_img_previous__png);   // assets\Previous .png
 LV_IMG_DECLARE( ui_img_knob_png);   // assets\knob.png
 LV_IMG_DECLARE( ui_img_like_png);   // assets\like.png

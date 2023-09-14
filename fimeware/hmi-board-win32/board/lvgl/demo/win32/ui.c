@@ -237,7 +237,9 @@ lv_obj_t *ui_mode_control;
 lv_obj_t *ui_ble_icon2;
 lv_obj_t *ui_wifi_icon4;
 lv_obj_t *ui_midline3;
+void ui_event_backlight_control__slider( lv_event_t * e);
 lv_obj_t *ui_backlight_control__slider;
+void ui_event_voice_control__slider( lv_event_t * e);
 lv_obj_t *ui_voice_control__slider;
 lv_obj_t *ui_Image5;
 lv_obj_t *ui_Image6;
@@ -269,6 +271,7 @@ lv_obj_t *ui_wallpaper_img1;
 void ui_event_wallpaper_img2( lv_event_t * e);
 lv_obj_t *ui_wallpaper_img2;
 lv_obj_t *ui_backlight_setting;
+void ui_event_backlight_Slider( lv_event_t * e);
 lv_obj_t *ui_backlight_Slider;
 lv_obj_t *ui____initial_actions0;
 const lv_img_dsc_t *ui_imgset_album[2] = {&ui_img_album1_png, &ui_img_album2_png};
@@ -866,11 +869,11 @@ PropertyAnimation_0_user_data->target = TargetObject;
 PropertyAnimation_0_user_data->val = -1;
 lv_anim_t PropertyAnimation_0;
 lv_anim_init(&PropertyAnimation_0);
-lv_anim_set_time(&PropertyAnimation_0, 350);
+lv_anim_set_time(&PropertyAnimation_0, 300);
 lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
 lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_x );
 lv_anim_set_values(&PropertyAnimation_0, 0, -410 );
-lv_anim_set_path_cb( &PropertyAnimation_0, lv_anim_path_ease_out);
+lv_anim_set_path_cb( &PropertyAnimation_0, lv_anim_path_linear);
 lv_anim_set_delay( &PropertyAnimation_0, delay + 0 );
 lv_anim_set_deleted_cb( &PropertyAnimation_0, _ui_anim_callback_free_user_data );
 lv_anim_set_playback_time(&PropertyAnimation_0, 0);
@@ -884,7 +887,7 @@ PropertyAnimation_1_user_data->target = TargetObject;
 PropertyAnimation_1_user_data->val = -1;
 lv_anim_t PropertyAnimation_1;
 lv_anim_init(&PropertyAnimation_1);
-lv_anim_set_time(&PropertyAnimation_1, 400);
+lv_anim_set_time(&PropertyAnimation_1, 300);
 lv_anim_set_user_data(&PropertyAnimation_1, PropertyAnimation_1_user_data);
 lv_anim_set_custom_exec_cb(&PropertyAnimation_1, _ui_anim_callback_set_opacity );
 lv_anim_set_values(&PropertyAnimation_1, 255, 0 );
@@ -907,11 +910,11 @@ PropertyAnimation_0_user_data->target = TargetObject;
 PropertyAnimation_0_user_data->val = -1;
 lv_anim_t PropertyAnimation_0;
 lv_anim_init(&PropertyAnimation_0);
-lv_anim_set_time(&PropertyAnimation_0, 320);
+lv_anim_set_time(&PropertyAnimation_0, 200);
 lv_anim_set_user_data(&PropertyAnimation_0, PropertyAnimation_0_user_data);
 lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_x );
 lv_anim_set_values(&PropertyAnimation_0, -410, 0 );
-lv_anim_set_path_cb( &PropertyAnimation_0, lv_anim_path_ease_out);
+lv_anim_set_path_cb( &PropertyAnimation_0, lv_anim_path_linear);
 lv_anim_set_delay( &PropertyAnimation_0, delay + 0 );
 lv_anim_set_deleted_cb( &PropertyAnimation_0, _ui_anim_callback_free_user_data );
 lv_anim_set_playback_time(&PropertyAnimation_0, 0);
@@ -925,7 +928,7 @@ PropertyAnimation_1_user_data->target = TargetObject;
 PropertyAnimation_1_user_data->val = -1;
 lv_anim_t PropertyAnimation_1;
 lv_anim_init(&PropertyAnimation_1);
-lv_anim_set_time(&PropertyAnimation_1, 400);
+lv_anim_set_time(&PropertyAnimation_1, 300);
 lv_anim_set_user_data(&PropertyAnimation_1, PropertyAnimation_1_user_data);
 lv_anim_set_custom_exec_cb(&PropertyAnimation_1, _ui_anim_callback_set_opacity );
 lv_anim_set_values(&PropertyAnimation_1, 0, 255 );
@@ -1304,27 +1307,26 @@ if ( event_code == LV_EVENT_CLICKED) {
     for (i = 0, duration = 100, ops_y = 0; i < 8; i++, duration += 100, ops_y += 30)
     {
         wifiname_list_btn = lv_list_add_btn(ui_main_network_panel, RT_NULL, Wifi_InfoS[i].ssid);
-        lv_obj_set_size(wifiname_list_btn, 260, 25);
+        lv_obj_set_size(wifiname_list_btn, 250, 25);
         lv_obj_align(wifiname_list_btn, LV_ALIGN_TOP_MID, 0, ops_y);
         lv_obj_clear_flag( wifiname_list_btn, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
         lv_obj_set_style_radius(wifiname_list_btn, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
-        lv_obj_set_style_bg_color(wifiname_list_btn, lv_color_hex(0x565656), LV_PART_MAIN | LV_STATE_DEFAULT );
+        lv_obj_set_style_bg_color(wifiname_list_btn, lv_color_hex(0x565656), LV_PART_MAIN | LV_STATE_DEFAULT);
         lv_obj_set_style_bg_opa(wifiname_list_btn, 220, LV_PART_MAIN| LV_STATE_DEFAULT);
         lv_obj_set_style_border_width(wifiname_list_btn, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
-		lv_obj_set_style_text_font(wifiname_list_btn, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
-		lv_obj_set_style_text_color(wifiname_list_btn, lv_color_hex(0xE9E9E9), LV_PART_MAIN | LV_STATE_DEFAULT );
-		lv_obj_set_style_text_opa(wifiname_list_btn, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+		
         lv_obj_t *label = lv_obj_get_child(wifiname_list_btn, 0);
-        lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL_CIRCULAR);
-        lv_obj_set_style_text_color(label, lv_color_black(), LV_STATE_DEFAULT);
+		lv_obj_set_style_text_opa(label, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(label, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+		lv_obj_set_style_text_color(label, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
 		
 		ui_wifi_icon = lv_img_create(wifiname_list_btn);
 		lv_img_set_src(ui_wifi_icon, &ui_img_wifi_png);
 		lv_obj_set_width( ui_wifi_icon, LV_SIZE_CONTENT);  /// 1
 		lv_obj_set_height( ui_wifi_icon, LV_SIZE_CONTENT);   /// 1
-		lv_obj_set_align( ui_wifi_icon, LV_ALIGN_LEFT_MID );
-		lv_obj_add_flag( ui_wifi_icon, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-		lv_obj_clear_flag( ui_wifi_icon, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+		lv_obj_set_align( ui_wifi_icon, LV_ALIGN_LEFT_MID);
+		lv_obj_add_flag( ui_wifi_icon, LV_OBJ_FLAG_ADV_HITTEST);   /// Flags
+		lv_obj_clear_flag( ui_wifi_icon, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
 
         lv_amin_start(wifiname_list_btn, 100, 0,
                       1, 500 + duration, 0, (lv_anim_exec_xcb_t)lv_obj_set_x, lv_anim_path_bounce);
@@ -1554,6 +1556,7 @@ void ui_event_music_panel( lv_event_t * e) {
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
 lv_indev_wait_release(lv_indev_get_act());
       movetoleft_Animation(ui_music_panel, 0);
+      shutdown_music( e );
 }
 }
 void ui_event_album_card2( lv_event_t * e) {
@@ -1564,6 +1567,11 @@ lv_indev_wait_release(lv_indev_get_act());
       albumright_Animation(ui_album_card1, 0);
       _ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Rosa Walton/Hallie Coggins");
       _ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "I Really Want to Stay At Your Hourse");
+      _ui_state_modify( ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      switch_player1_func( e );
 }
 }
 void ui_event_album_card1( lv_event_t * e) {
@@ -1574,6 +1582,11 @@ lv_indev_wait_release(lv_indev_get_act());
       albumright_Animation(ui_album_card2, 0);
       _ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "Can we kiss forever?");
       _ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Kina/Adriana Proenza");
+      _ui_state_modify( ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+}
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      switch_player2_func( e );
 }
 }
 void ui_event_play( lv_event_t * e) {
@@ -1777,6 +1790,18 @@ if ( event_code == LV_EVENT_CLICKED) {
       passed_Animation(ui_ble_icon13, 0);
 }
 }
+void ui_event_backlight_control__slider( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_VALUE_CHANGED) {
+      backlight_slider_event_cb( e );
+}
+}
+void ui_event_voice_control__slider( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_VALUE_CHANGED) {
+      voice_slider_event_cb( e );
+}
+}
 void ui_event_search_TextArea( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_CLICKED) {
@@ -1824,6 +1849,7 @@ if ( event_code == LV_EVENT_PRESSED) {
       _ui_opacity_set( ui_music_panel, 0);
       _ui_flag_modify( ui_menu, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_TOGGLE);
       _ui_flag_modify( ui_system_ctrl_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+      wavplayer_play("music/song1.wav");
 }
 if ( event_code == LV_EVENT_CLICKED) {
       albumrotate_Animation(ui_album_card2, 0);
@@ -1915,6 +1941,12 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_image_set_property(ui_wallpaper_main_img, _UI_IMAGE_PROPERTY_IMAGE,& ui_img_bg2_png);
       fadein_Animation(ui_wallpaper_main_img, 0);
       _ui_opacity_set( ui_wallpaper_main_img, 0);
+}
+}
+void ui_event_backlight_Slider( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_VALUE_CHANGED) {
+      backlight_slider_event_cb( e );
 }
 }
 

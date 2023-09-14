@@ -56,7 +56,7 @@ int wavheader_init(struct wav_header *header, int sample_rate, int channels, int
  *      - 0  Success
  *      - -1 Error
  */
-int wavheader_read(struct wav_header *header, FILE *fp);
+int wavheader_read(struct wav_header *header, int fp);
 
 /**
  * @brief             Write wavfile head information to file stream
@@ -68,7 +68,7 @@ int wavheader_read(struct wav_header *header, FILE *fp);
  *      - 0  Success
  *      - -1 Error
  */
-int wavheader_write(struct wav_header *header, FILE *fp);
+int wavheader_write(struct wav_header *header, int fp);
 
 /**
  * @brief             Print wavfile header information

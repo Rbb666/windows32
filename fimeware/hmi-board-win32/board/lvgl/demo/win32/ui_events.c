@@ -4,20 +4,59 @@
 // Project name: SquareLine_Project
 
 #include "ui.h"
-#include "pwm_audio.h"
-
-extern uint8_t *v_pbuffer;
 
 void play_music_function(lv_event_t * e)
 {
 	rt_kprintf("play_music_function\n");
-	
-	int fd = -1;
-	
-	
+    wavplayer_pause();
 }
 
 void pause_music_function(lv_event_t * e)
 {
 	rt_kprintf("pause_music_function\n");
+    wavplayer_resume();
+}
+
+void switch_player1_func(lv_event_t * e)
+{
+	// Your code here
+    wavplayer_play("music/song1.wav");
+}
+
+void switch_player2_func(lv_event_t * e)
+{
+	// Your code here
+    wavplayer_play("music/song2.wav");
+}
+
+void backlight_slider_event_cb(lv_event_t * e)
+{
+	// Your code here
+    lv_obj_t *slider = lv_event_get_target(e);
+    int val = (int)lv_slider_get_value(slider);
+    backlight_setvalue(val * 100);
+}
+
+void voice_slider_event_cb(lv_event_t * e)
+{
+	// Your code here
+    lv_obj_t *slider = lv_event_get_target(e);
+    int val = (int)lv_slider_get_value(slider);
+    wavplayer_volume_set(val);
+}
+
+void shutdown_music(lv_event_t * e)
+{
+	// Your code here
+	char *music_name = wavplayer_uri_get();
+	if (rt_strcmp(music_name, "music/song2.wav") == 0)
+	{
+		albumleft_Animation(ui_album_card2, 0);
+		albumright_Animation(ui_album_card1, 0);
+		_ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Rosa Walton/Hallie Coggins");
+		_ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "I Really Want to Stay At Your Hourse");
+		_ui_state_modify(ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+	}
+	
+	wavplayer_stop();
 }

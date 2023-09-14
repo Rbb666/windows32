@@ -4,7 +4,6 @@
 // Project name: SquareLine_Project
 
 #include "../ui.h"
-#include "player.h"
 #include "utils.h"
 
 struct player v_player;
