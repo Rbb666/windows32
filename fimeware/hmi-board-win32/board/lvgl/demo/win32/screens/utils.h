@@ -7,6 +7,7 @@
 #include "player.h"
 #include "wlan_mgnt.h"
 #include <wavplayer.h>
+#include "lv_file_explorer.h"
 
 typedef struct wifi_info
 {

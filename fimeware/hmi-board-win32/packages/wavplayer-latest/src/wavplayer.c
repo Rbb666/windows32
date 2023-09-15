@@ -29,6 +29,9 @@
 #define WP_THREAD_STATCK_SIZE (2048)
 #define WP_THREAD_PRIORITY (15)
 
+#define __Map(x, in_min, in_max, out_min, out_max) \
+    (((x) - (in_min)) * ((out_max) - (out_min)) / ((in_max) - (in_min)) + (out_min))
+
 enum MSG_TYPE
 {
     MSG_NONE   = 0,
@@ -58,7 +61,8 @@ struct wavplayer
     int state;
     char *uri;
     char *buffer;
-    rt_device_t device;
+    size_t BytesRD;
+    uint16_t progress;
     rt_mq_t mq;
     rt_mutex_t lock;
     struct rt_completion ack;
@@ -66,7 +70,15 @@ struct wavplayer
     int volume;
 };
 
+struct wav_headers
+{
+    int   riff_datasize;                    /* RIFF chunk data size,exclude riff_id[4] and riff_datasize,total - 8 */
+    int   fmt_avg_bytes_per_sec;            /* sample_rate * channels * bit_per_sample / 8 */
+    int   data_datasize;                    /* data chunk size,pcm_size - 44 */
+};
+
 static struct wavplayer player;
+static struct wav_headers wav_dt;
 
 #if (DBG_LEVEL >= DBG_LOG)
 
@@ -215,6 +227,11 @@ char *wavplayer_uri_get(void)
     return player.uri;
 }
 
+unsigned char wavplayer_progress_get(void)
+{
+    return player.progress;
+}
+
 #include "pwm_audio.h"
 static void audio_init()
 {
@@ -261,6 +278,11 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
     caps.udata.config.samplerate = wav.fmt_sample_rate;
     caps.udata.config.channels = wav.fmt_channels;
     caps.udata.config.samplebits = wav.fmt_bit_per_sample;
+    
+    wav_dt.data_datasize = wav.data_datasize;
+    wav_dt.fmt_avg_bytes_per_sec = wav.fmt_avg_bytes_per_sec;
+    wav_dt.riff_datasize = wav.riff_datasize;
+
     pwm_audio_set_param(wav.fmt_sample_rate, wav.fmt_bit_per_sample, wav.fmt_channels);
 
     /* set volume according to configuration */
@@ -291,6 +313,8 @@ static void wavplayer_close(struct wavplayer *player)
     }
 
     pwm_audio_deinit();
+    
+    player->BytesRD = 0;
 
     LOG_I("close wavplayer");
 }
@@ -355,6 +379,7 @@ static void wavplayer_entry(void *parameter)
     rt_err_t result = RT_EOK;
     rt_int32_t size;
     int event;
+    uint16_t process;
 
     player.buffer = rt_malloc(WP_BUFFER_SIZE);
     if (player.buffer == RT_NULL)
@@ -398,6 +423,10 @@ static void wavplayer_entry(void *parameter)
             {
                 /* read raw data from file stream */
                 size = read(player.fp, player.buffer, WP_BUFFER_SIZE);
+                player.BytesRD += size + 8;
+                process = ((double)player.BytesRD / wav_dt.riff_datasize) * wav_dt.fmt_avg_bytes_per_sec;
+                player.progress = __Map((int32_t)process, 0, wav_dt.fmt_avg_bytes_per_sec, 0, 100);
+                
                 if (size == 0)
                 {
                     /* FILE END*/

@@ -93,4 +93,11 @@ int wavplayer_state_get(void);
  */
 char *wavplayer_uri_get(void);
 
+/**
+ * @brief             Get the progress that is currently playing
+ *
+ * @return            progress that is currently playing
+ */
+unsigned char wavplayer_progress_get(void);
+
 #endif

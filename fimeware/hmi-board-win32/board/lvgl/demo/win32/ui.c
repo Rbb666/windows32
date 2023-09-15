@@ -274,6 +274,8 @@ lv_obj_t *ui_backlight_setting;
 void ui_event_backlight_Slider( lv_event_t * e);
 lv_obj_t *ui_backlight_Slider;
 lv_obj_t *ui____initial_actions0;
+lv_obj_t *file_explorer_panel;
+lv_obj_t *file_explorer_label;
 const lv_img_dsc_t *ui_imgset_album[2] = {&ui_img_album1_png, &ui_img_album2_png};
 const lv_img_dsc_t *ui_imgset_bg[2] = {&ui_img_bg1_png, &ui_img_bg2_png};
 const lv_img_dsc_t *ui_imgset_file_x[1] = {&ui_img_file_25x25_png};
@@ -1551,12 +1553,14 @@ if ( event_code == LV_EVENT_CLICKED) {
 	  play_video("video/4.avi");
 }
 }
+static lv_timer_t *mc_timer;
 void ui_event_music_panel( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
 lv_indev_wait_release(lv_indev_get_act());
       movetoleft_Animation(ui_music_panel, 0);
       shutdown_music( e );
+      lv_timer_del(mc_timer);
 }
 }
 void ui_event_album_card2( lv_event_t * e) {
@@ -1841,6 +1845,11 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_menu, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 }
+void music_timer(lv_timer_t *timer)
+{
+    uint8_t progress = wavplayer_progress_get();
+    lv_slider_set_value( ui_music_process, progress, LV_ANIM_OFF);    
+}
 void ui_event_music( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_PRESSED) {
@@ -1850,6 +1859,7 @@ if ( event_code == LV_EVENT_PRESSED) {
       _ui_flag_modify( ui_menu, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_TOGGLE);
       _ui_flag_modify( ui_system_ctrl_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
       wavplayer_play("music/song1.wav");
+      mc_timer = lv_timer_create(music_timer, 1000, NULL);
 }
 if ( event_code == LV_EVENT_CLICKED) {
       albumrotate_Animation(ui_album_card2, 0);

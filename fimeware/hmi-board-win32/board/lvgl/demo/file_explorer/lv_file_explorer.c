@@ -269,6 +269,8 @@ static void lv_file_explorer_constructor(const lv_obj_class_t *class_p, lv_obj_t
     lv_obj_set_width(explorer->cont, LV_PCT(100));
     lv_obj_set_flex_grow(explorer->cont, 1);
 
+	lv_obj_set_style_bg_color(explorer->cont, lv_color_hex(0x414141), LV_PART_MAIN | LV_STATE_DEFAULT );
+	lv_obj_set_style_bg_opa(explorer->cont, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
 #if LV_FILE_EXPLORER_QUICK_ACCESS
     /*Quick access bar area on the left*/
     explorer->quick_access_area = lv_obj_create(explorer->cont);
@@ -291,6 +293,9 @@ static void lv_file_explorer_constructor(const lv_obj_class_t *class_p, lv_obj_t
     explorer->head_area = lv_obj_create(explorer->browser_area);
     lv_obj_set_size(explorer->head_area, LV_PCT(100), LV_PCT(14));
     lv_obj_clear_flag(explorer->head_area, LV_OBJ_FLAG_SCROLLABLE);
+	
+	lv_obj_set_style_bg_color(explorer->head_area, lv_color_hex(0x414141), LV_PART_MAIN | LV_STATE_DEFAULT );
+	lv_obj_set_style_bg_opa(explorer->head_area, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 #if LV_FILE_EXPLORER_QUICK_ACCESS
     /*Two lists of quick access bar*/
@@ -323,12 +328,17 @@ static void lv_file_explorer_constructor(const lv_obj_class_t *class_p, lv_obj_t
     /*Show current path*/
     explorer->path_label = lv_label_create(explorer->head_area);
     lv_label_set_text(explorer->path_label, LV_SYMBOL_EYE_OPEN "https://lvgl.io");
+	lv_obj_set_style_text_font(explorer->path_label, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+	lv_obj_set_style_text_color(explorer->path_label, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_center(explorer->path_label);
 
     /*Table showing the contents of the table of contents*/
     explorer->file_table = lv_table_create(explorer->browser_area);
     lv_obj_set_size(explorer->file_table, LV_PCT(100), LV_PCT(86));
     lv_table_set_col_width(explorer->file_table, 0, LV_PCT(100));
+	lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0x414141), LV_PART_MAIN | LV_STATE_DEFAULT );
+	lv_obj_set_style_bg_opa(explorer->file_table, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
+	
     lv_table_set_col_cnt(explorer->file_table, 1);
     lv_obj_add_event_cb(explorer->file_table, browser_file_event_handler, LV_EVENT_ALL, obj);
 
@@ -347,11 +357,11 @@ static void init_style(lv_obj_t *obj)
 
     /*lv_file_explorer obj style*/
     lv_obj_set_style_radius(obj, 0, 0);
-    lv_obj_set_style_bg_color(obj, lv_color_hex(0xf2f1f6), 0);
+    lv_obj_set_style_bg_color(obj, lv_color_hex(0x414141), 0);
 
     /*main container style*/
     lv_obj_set_style_radius(explorer->cont, 0, 0);
-    lv_obj_set_style_bg_opa(explorer->cont, LV_OPA_0, 0);
+    lv_obj_set_style_bg_opa(explorer->cont, 240, 0);
     lv_obj_set_style_border_width(explorer->cont, 0, 0);
     lv_obj_set_style_outline_width(explorer->cont, 0, 0);
     lv_obj_set_style_pad_column(explorer->cont, 0, 0);
@@ -381,10 +391,10 @@ static void init_style(lv_obj_t *obj)
     lv_obj_set_style_radius(explorer->browser_area, 0, 0);
     lv_obj_set_style_border_width(explorer->browser_area, 0, 0);
     lv_obj_set_style_outline_width(explorer->browser_area, 0, 0);
-    lv_obj_set_style_bg_color(explorer->browser_area, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_bg_color(explorer->browser_area, lv_color_hex(0x414141), 0);
 
     /*Style of the table in the browser container*/
-    lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0x414141), 0);
     lv_obj_set_style_pad_all(explorer->file_table, 0, 0);
     lv_obj_set_style_radius(explorer->file_table, 0, 0);
     lv_obj_set_style_border_width(explorer->file_table, 0, 0);
@@ -643,6 +653,9 @@ static void show_dir(lv_obj_t *obj, const char *path)
     lv_memset_00(explorer->current_path, sizeof(explorer->current_path));
     strcpy(explorer->current_path, path);
     lv_label_set_text_fmt(explorer->path_label, LV_SYMBOL_EYE_OPEN " %s", path);
+
+	lv_obj_set_style_text_font(explorer->file_table, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
+	lv_obj_set_style_text_color(explorer->file_table, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
 
     size_t current_path_len = strlen(explorer->current_path);
     if ((*((explorer->current_path) + current_path_len) != '/') && (current_path_len < LV_FILE_EXPLORER_PATH_MAX_LEN))
