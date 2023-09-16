@@ -208,7 +208,6 @@ int wavplayer_volume_set(int volume)
     caps.sub_type  = AUDIO_MIXER_VOLUME;
     caps.udata.value = volume;
 
-    LOG_I("set volume = %d", volume);
     return pwm_audio_set_volume(volume);;
 }
 

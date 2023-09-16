@@ -220,8 +220,6 @@ rt_err_t pwm_audio_init(const pwm_audio_config_t *cfg)
 
     pwm_audio_handle_t handle = NULL;
 
-    int level = rt_hw_interrupt_disable();
-
     handle = rt_malloc(sizeof(pwm_audio_handle));
     RT_ASSERT(handle != NULL);
     memset(handle, 0, sizeof(pwm_audio_handle));
@@ -257,8 +255,6 @@ rt_err_t pwm_audio_init(const pwm_audio_config_t *cfg)
     R_GPT_Start(handle->pwm_timer_ctrl);
     //
     handle->status = PWM_AUDIO_STATUS_IDLE;
-
-    rt_hw_interrupt_enable(level);
 
     return res;
 }
@@ -304,7 +300,6 @@ rt_err_t pwm_audio_set_volume(int8_t volume)
     pwm_audio_handle_t handle = g_pwm_audio_handle;
     handle->volume = volume + VOLUME_0DB;
 
-    rt_kprintf("set volume to:%d\n", handle->volume);
     return RT_EOK;
 }
 

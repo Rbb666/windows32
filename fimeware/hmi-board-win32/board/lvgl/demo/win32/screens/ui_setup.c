@@ -5,14 +5,63 @@
 
 #include "../ui.h"
 #include "utils.h"
+#include "sys/time.h"
+
+#define RTC_NAME       "rtc"
 
 struct player v_player;
 static lv_timer_t *timer;
+static lv_timer_t *rtc_timer;
 extern int WiFi_Scan(void);
 
 void video_timer(lv_timer_t *timer)
 {
     _ui_screen_change(&ui_main, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_main_screen_init);
+}
+
+void rtc_timer_callback(lv_timer_t *timer)
+{
+    time_t timep;
+    struct tm *p;
+ 
+    time(&timep);
+    p = localtime(&timep);
+	lv_label_set_text_fmt(ui_time, "%d:%d", p->tm_hour, p->tm_min);
+}
+
+int setup_time(void)
+{
+    rt_err_t ret = RT_EOK;
+    rt_device_t device = RT_NULL;
+
+    device = rt_device_find(RTC_NAME);
+    if (!device)
+    {
+        rt_kprintf("find %s failed!", RTC_NAME);
+        return RT_ERROR;
+    }
+
+    if (rt_device_open(device, 0) != RT_EOK)
+    {
+        rt_kprintf("open %s failed!", RTC_NAME);
+        return RT_ERROR;
+    }
+
+    ret = set_date(2023, 9, 16);
+    if (ret != RT_EOK)
+    {
+        rt_kprintf("set RTC date failed\n");
+        return ret;
+    }
+
+    ret = set_time(23, 15, 50);
+    if (ret != RT_EOK)
+    {
+        rt_kprintf("set RTC time failed\n");
+        return ret;
+    }
+
+    return ret;
 }
 
 void ui_setup_screen_init(void)
@@ -28,4 +77,6 @@ void ui_setup_screen_init(void)
     timer = lv_timer_create(video_timer, 5500, NULL);
     lv_timer_set_repeat_count(timer, 1);
     WiFi_Scan();
+	setup_time();
+	rtc_timer = lv_timer_create(rtc_timer_callback, 2000, NULL);
 }

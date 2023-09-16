@@ -53,6 +53,7 @@ void ui_event_wifi( lv_event_t * e);
 lv_obj_t *ui_wifi;
 void ui_event_voice( lv_event_t * e);
 lv_obj_t *ui_voice;
+lv_obj_t *ui_time;
 lv_obj_t *ui_Setting_Pannel;
 void ui_event_sys_display_panel( lv_event_t * e);
 lv_obj_t *ui_sys_display_panel;

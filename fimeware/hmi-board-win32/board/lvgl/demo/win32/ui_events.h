@@ -17,6 +17,7 @@ void play_next_music(lv_event_t * e);
 void play_music_function(lv_event_t * e);
 void pause_music_function(lv_event_t * e);
 void play_pre_music(lv_event_t * e);
+void move_video_panel_to_left(lv_event_t * e);
 void backlight_slider_event_cb(lv_event_t * e);
 void voice_slider_event_cb(lv_event_t * e);
 void connect_wifi_event(lv_event_t * e);

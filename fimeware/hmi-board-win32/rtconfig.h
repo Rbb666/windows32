@@ -38,7 +38,7 @@
 
 #define RT_USING_MEMPOOL
 #define RT_USING_SMALL_MEM
-#define RT_USING_SMALL_MEM_AS_HEAP
+#define RT_USING_USERHEAP
 #define RT_USING_HEAP
 
 /* Kernel Device Object */
@@ -114,6 +114,8 @@
 #define RT_USING_I2C_BITOPS
 #define RT_USING_PIN
 #define RT_USING_PWM
+#define RT_USING_RTC
+#define RT_USING_SOFT_RTC
 #define RT_USING_SDIO
 #define RT_SDIO_STACK_SIZE 512
 #define RT_SDIO_THREAD_PRIORITY 15
@@ -254,6 +256,9 @@
 
 /* CYW43012 WiFi */
 
+#define PKG_USING_NETUTILS
+#define PKG_USING_NETUTILS_V133
+#define PKG_NETUTILS_VER_NUM 0x10303
 
 /* IoT Cloud */
 
@@ -304,6 +309,8 @@
 
 /* Micrium: Micrium software products porting for RT-Thread */
 
+#define PKG_USING_TLSF
+#define PKG_USING_TLSF_V100
 
 /* peripheral libraries and drivers */
 

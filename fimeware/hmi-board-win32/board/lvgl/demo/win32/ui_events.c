@@ -133,3 +133,8 @@ void play_pre_music(lv_event_t * e)
 	}
 	_ui_state_modify( ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
 }
+
+void move_video_panel_to_left(lv_event_t * e)
+{
+	// Your code here
+}

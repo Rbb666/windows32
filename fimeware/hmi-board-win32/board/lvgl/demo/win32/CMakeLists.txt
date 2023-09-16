@@ -7,7 +7,6 @@ SET(SOURCES components/ui_comp_button_pause2.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    ui_events.c
     images/ui_img_bg1_png.c
     images/ui_img_win_png.c
     images/ui_img_file_25x25_png.c
