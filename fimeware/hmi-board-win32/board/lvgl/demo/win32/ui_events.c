@@ -5,58 +5,131 @@
 
 #include "ui.h"
 
-void play_music_function(lv_event_t * e)
+void play_music_function(lv_event_t *e)
 {
-	rt_kprintf("play_music_function\n");
+    rt_kprintf("play_music_function\n");
     wavplayer_pause();
 }
 
-void pause_music_function(lv_event_t * e)
+void pause_music_function(lv_event_t *e)
 {
-	rt_kprintf("pause_music_function\n");
+    rt_kprintf("pause_music_function\n");
     wavplayer_resume();
 }
 
-void switch_player1_func(lv_event_t * e)
+void switch_player1_func(lv_event_t *e)
 {
-	// Your code here
+    // Your code here
     wavplayer_play("music/song1.wav");
 }
 
-void switch_player2_func(lv_event_t * e)
+void switch_player2_func(lv_event_t *e)
 {
-	// Your code here
+    // Your code here
     wavplayer_play("music/song2.wav");
 }
 
-void backlight_slider_event_cb(lv_event_t * e)
+void backlight_slider_event_cb(lv_event_t *e)
 {
-	// Your code here
+    // Your code here
     lv_obj_t *slider = lv_event_get_target(e);
     int val = (int)lv_slider_get_value(slider);
     backlight_setvalue(val * 100);
 }
 
-void voice_slider_event_cb(lv_event_t * e)
+void voice_slider_event_cb(lv_event_t *e)
 {
-	// Your code here
+    // Your code here
     lv_obj_t *slider = lv_event_get_target(e);
     int val = (int)lv_slider_get_value(slider);
     wavplayer_volume_set(val);
 }
 
-void shutdown_music(lv_event_t * e)
+void shutdown_music(lv_event_t *e)
+{
+    // Your code here
+    char *music_name = wavplayer_uri_get();
+    if (rt_strcmp(music_name, "music/song2.wav") == 0)
+    {
+        albumleft_Animation(ui_album_card2, 0);
+        albumright_Animation(ui_album_card1, 0);
+        _ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Rosa Walton/Hallie Coggins");
+        _ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "I Really Want to Stay At Your Hourse");
+        _ui_state_modify(ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+    }
+
+	wavplayer_pause();
+    wavplayer_stop();
+}
+
+lv_timer_t *net_timer;
+
+void wifi_timer(lv_timer_t *timer)
+{
+    if (rt_wlan_is_connected() == RT_TRUE)
+    {
+        lv_img_set_src(ui_wifi, "/res/wifi_connect.png");
+        lv_timer_del(net_timer);
+    }
+}
+
+void connect_wifi_event(lv_event_t *e)
+{
+    // Your code here
+    const char *text = lv_textarea_get_text(ui_wifiTextArea);
+    char *wifi_password = rt_strdup(text);
+    if (rt_strlen(text) > 0)
+    {
+        rt_kprintf("conn:%s\n", Wifi_InfoS[wifi_index].ssid);
+        rt_strncpy(Wifi_InfoS[wifi_index].password, wifi_password, rt_strlen(wifi_password));
+        WiFi_Join(Wifi_InfoS[wifi_index].ssid, Wifi_InfoS[wifi_index].password);
+        rt_free(wifi_password);
+        net_timer = lv_timer_create(wifi_timer, 1000, NULL);
+    }
+}
+
+void play_next_music(lv_event_t * e)
 {
 	// Your code here
 	char *music_name = wavplayer_uri_get();
-	if (rt_strcmp(music_name, "music/song2.wav") == 0)
+	if (rt_strcmp(music_name, "music/song1.wav") == 0)
+	{
+		albumleft_Animation(ui_album_card1, 0);
+		albumright_Animation(ui_album_card2, 0);
+		_ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "Can we kiss forever?");
+		_ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Kina/Adriana Proenza");
+		wavplayer_play("music/song2.wav");
+	}
+	else
 	{
 		albumleft_Animation(ui_album_card2, 0);
 		albumright_Animation(ui_album_card1, 0);
 		_ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Rosa Walton/Hallie Coggins");
 		_ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "I Really Want to Stay At Your Hourse");
-		_ui_state_modify(ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+		wavplayer_play("music/song1.wav");
 	}
-	
-	wavplayer_stop();
+	_ui_state_modify( ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
+}
+
+void play_pre_music(lv_event_t * e)
+{
+	// Your code here
+	char *music_name = wavplayer_uri_get();
+	if (rt_strcmp(music_name, "music/song1.wav") == 0)
+	{
+		albumleft_Animation(ui_album_card1, 0);
+		albumright_Animation(ui_album_card2, 0);
+		_ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "Can we kiss forever?");
+		_ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Kina/Adriana Proenza");
+		wavplayer_play("music/song2.wav");
+	}
+	else
+	{
+		albumleft_Animation(ui_album_card2, 0);
+		albumright_Animation(ui_album_card1, 0);
+		_ui_label_set_property(ui_author, _UI_LABEL_PROPERTY_TEXT, "Rosa Walton/Hallie Coggins");
+		_ui_label_set_property(ui_music_title, _UI_LABEL_PROPERTY_TEXT, "I Really Want to Stay At Your Hourse");
+		wavplayer_play("music/song1.wav");
+	}
+	_ui_state_modify( ui_play, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
 }

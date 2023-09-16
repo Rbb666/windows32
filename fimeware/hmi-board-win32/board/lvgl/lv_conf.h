@@ -76,7 +76,7 @@
 #if LV_USE_FS_POSIX
     #define LV_FS_POSIX_LETTER '/'				/*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
     #define LV_FS_POSIX_PATH "/"				/*Set the working directory. File/directory paths ill be appended to it.*/
-    #define LV_FS_POSIX_CACHE_SIZE  32 * 1024	/*>0 to cache this number of bytes in lv_fs_read()*/
+    #define LV_FS_POSIX_CACHE_SIZE  5 * 1024	/*>0 to cache this number of bytes in lv_fs_read()*/
 #endif
 
 #define LV_USE_FILE_EXPLORER    1

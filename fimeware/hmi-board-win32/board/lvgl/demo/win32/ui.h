@@ -149,9 +149,11 @@ void ui_event_album_card1( lv_event_t * e);
 extern lv_obj_t *ui_album_card1;
 extern lv_obj_t *ui_music_title;
 extern lv_obj_t *ui_author;
+void ui_event_next_song( lv_event_t * e);
 extern lv_obj_t *ui_next_song;
 void ui_event_play( lv_event_t * e);
 extern lv_obj_t *ui_play;
+void ui_event_pre_song( lv_event_t * e);
 extern lv_obj_t *ui_pre_song;
 extern lv_obj_t *ui_music_process;
 extern lv_obj_t *ui_collect;
@@ -278,12 +280,23 @@ extern lv_obj_t *ui_wallpaper_img2;
 extern lv_obj_t *ui_backlight_setting;
 void ui_event_backlight_Slider( lv_event_t * e);
 extern lv_obj_t *ui_backlight_Slider;
+extern lv_obj_t *ui_wifi_input_panel;
+void ui_event_wifiTextArea( lv_event_t * e);
+extern lv_obj_t *ui_wifiTextArea;
+void ui_event_cancel_btn( lv_event_t * e);
+extern lv_obj_t *ui_cancel_btn;
+extern lv_obj_t *ui_Label12;
+void ui_event_cancel_btn1( lv_event_t * e);
+extern lv_obj_t *ui_cancel_btn1;
+extern lv_obj_t *ui_Label13;
 extern lv_obj_t *ui____initial_actions0;
 extern lv_obj_t *file_explorer_panel;
 extern lv_obj_t *file_explorer_label;
+extern lv_obj_t *wifiname_list_btn;
 void file_explorer_event_cb( lv_event_t * e);
+void wifi_event_handler(lv_event_t *e);
 
-LV_IMG_DECLARE( ui_img_bg2_png);   // assets\bg2.png
+LV_IMG_DECLARE( ui_img_bg1_png);   // assets\bg1.png
 LV_IMG_DECLARE( ui_img_win_png);   // assets\win.png
 LV_IMG_DECLARE( ui_img_file_25x25_png);   // assets\file_25x25.png
 LV_IMG_DECLARE( ui_img_wifi_15_png);   // assets\wifi_15.png
@@ -356,8 +369,8 @@ LV_IMG_DECLARE( ui_img_file_png);   // assets\file.png
 LV_IMG_DECLARE( ui_img_pc_big_png);   // assets\pc_big.png
 LV_IMG_DECLARE( ui_img_video_png);   // assets\video.png
 LV_IMG_DECLARE( ui_img_bg1_small_png);   // assets\bg1_small.png
-LV_IMG_DECLARE( ui_img_bg1_png);   // assets\bg1.png
 LV_IMG_DECLARE( ui_img_bg2_small_png);   // assets\bg2_small.png
+LV_IMG_DECLARE( ui_img_bg2_png);   // assets\bg2.png
 LV_IMG_DECLARE( ui_img_slider_bg_mario_png);   // assets\slider_bg_mario.png
 LV_IMG_DECLARE( ui_img_suppermario_png);   // assets\supperMario.png
 LV_IMG_DECLARE( ui_img_photo4_png);   // assets\photo4.png

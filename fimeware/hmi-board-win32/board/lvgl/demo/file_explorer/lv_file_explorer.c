@@ -331,13 +331,13 @@ static void lv_file_explorer_constructor(const lv_obj_class_t *class_p, lv_obj_t
 	lv_obj_set_style_text_font(explorer->path_label, &lv_font_montserrat_10, LV_PART_MAIN| LV_STATE_DEFAULT);
 	lv_obj_set_style_text_color(explorer->path_label, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_center(explorer->path_label);
+	lv_obj_set_y(explorer->path_label, 5);
 
     /*Table showing the contents of the table of contents*/
     explorer->file_table = lv_table_create(explorer->browser_area);
     lv_obj_set_size(explorer->file_table, LV_PCT(100), LV_PCT(86));
     lv_table_set_col_width(explorer->file_table, 0, LV_PCT(100));
-	lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0x414141), LV_PART_MAIN | LV_STATE_DEFAULT );
-	lv_obj_set_style_bg_opa(explorer->file_table, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
+	lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
 	
     lv_table_set_col_cnt(explorer->file_table, 1);
     lv_obj_add_event_cb(explorer->file_table, browser_file_event_handler, LV_EVENT_ALL, obj);
@@ -391,10 +391,10 @@ static void init_style(lv_obj_t *obj)
     lv_obj_set_style_radius(explorer->browser_area, 0, 0);
     lv_obj_set_style_border_width(explorer->browser_area, 0, 0);
     lv_obj_set_style_outline_width(explorer->browser_area, 0, 0);
-    lv_obj_set_style_bg_color(explorer->browser_area, lv_color_hex(0x414141), 0);
+    lv_obj_set_style_bg_color(explorer->browser_area, lv_color_hex(0xffffff), 0);
 
     /*Style of the table in the browser container*/
-    lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0x414141), 0);
+    lv_obj_set_style_bg_color(explorer->file_table, lv_color_hex(0xffffff), 0);
     lv_obj_set_style_pad_all(explorer->file_table, 0, 0);
     lv_obj_set_style_radius(explorer->file_table, 0, 0);
     lv_obj_set_style_border_width(explorer->file_table, 0, 0);

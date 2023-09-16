@@ -259,7 +259,7 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
         result = -RT_ERROR;
         goto __exit;
     }
-
+	
     /* Audio Init */
     audio_init();
 
@@ -478,6 +478,8 @@ __exit:
         rt_mutex_delete(player.lock);
         player.lock = RT_NULL;
     }
+
+	pwm_audio_deinit();
 }
 
 

@@ -83,13 +83,13 @@ static int video_start_parser(player_t player, int fd, char *filename)
 
     avi_file.BytesRD = read(fd, v_pbuffer, 20480);
     ret = AVI_Parser(v_pbuffer, avi_file.BytesRD);
-	const uint8_t *pdata = (const uint8_t *)v_pbuffer;
-	pdata += sizeof(AVI_LIST_HEAD);
-	pdata += sizeof(AVI_LIST_HEAD);
-	AVI_AVIH_CHUNK * avih = (AVI_AVIH_CHUNK *)pdata;
-	video_width = avih->width;
-	video_height = avih->height;
-	
+    const uint8_t *pdata = (const uint8_t *)v_pbuffer;
+    pdata += sizeof(AVI_LIST_HEAD);
+    pdata += sizeof(AVI_LIST_HEAD);
+    AVI_AVIH_CHUNK *avih = (AVI_AVIH_CHUNK *)pdata;
+    video_width = avih->width;
+    video_height = avih->height;
+
     if (0 > ret)
     {
         LOG_E("parse failed (%d)\n", ret);
@@ -379,7 +379,7 @@ int player_control(player_t player, int cmd, void *arg)
     case PLAYER_CMD_NEXT:
         player_next(player);
         break;
-	case PLAYER_CMD_DELETE:
+    case PLAYER_CMD_DELETE:
         player->status = PLAYER_DELETE;
         break;
     case PLAYER_CMD_SET_VOL:
@@ -419,7 +419,7 @@ static void player_entry(void *parameter)
 
             if (avi_file.Strtype == T_vids)
             {
-				JPEG_X_Draw(v_pbuffer, (480 - video_width)/2, (272 - video_height)/2);
+                JPEG_X_Draw(v_pbuffer, (480 - video_width) / 2, (272 - video_height) / 2);
             }
             /* audio output */
             else if (avi_file.Strtype == T_auds)
