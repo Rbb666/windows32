@@ -1791,6 +1791,10 @@ lv_indev_wait_release(lv_indev_get_act());
       movetocenter_Animation(ui_video_panel, 0);
       _ui_opacity_set( ui_video_panel, 0);
 }
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      _ui_flag_modify( ui_time, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+}
 }
 void ui_event_wifi_control( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
@@ -1936,12 +1940,12 @@ if ( event_code == LV_EVENT_PRESSED) {
 }
 void ui_event_video( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_PRESSED) {
+if ( event_code == LV_EVENT_CLICKED) {
       passed_Animation(ui_video, 0);
       _ui_flag_modify( ui_menu, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_TOGGLE);
       _ui_flag_modify( ui_system_ctrl_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
-if ( event_code == LV_EVENT_PRESSED) {
+if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_video_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
       movetocenter_Animation(ui_video_panel, 0);
 }

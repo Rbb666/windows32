@@ -10,23 +10,32 @@
 #define RTC_NAME       "rtc"
 
 struct player v_player;
-static lv_timer_t *timer;
+static lv_timer_t *start_timer;
+static lv_timer_t *video_timer;
 static lv_timer_t *rtc_timer;
 extern int WiFi_Scan(void);
 
-void video_timer(lv_timer_t *timer)
+static void start_timer_callback(lv_timer_t *timer)
+{
+	player_control(&v_player, PLAYER_CMD_INIT, "video/start.avi");
+}
+
+static void video_timer_callback(lv_timer_t *timer)
 {
     _ui_screen_change(&ui_main, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_main_screen_init);
 }
 
-void rtc_timer_callback(lv_timer_t *timer)
+static void rtc_timer_callback(lv_timer_t *timer)
 {
     time_t timep;
     struct tm *p;
  
     time(&timep);
     p = localtime(&timep);
-	lv_label_set_text_fmt(ui_time, "%d:%d", p->tm_hour, p->tm_min);
+	if (!lv_obj_has_flag(ui_time, LV_OBJ_FLAG_HIDDEN))
+	{
+		lv_label_set_text_fmt(ui_time, "%d:%d", p->tm_hour, p->tm_min);
+	}
 }
 
 int setup_time(void)
@@ -73,10 +82,11 @@ void ui_setup_screen_init(void)
 
     lv_obj_add_event_cb(ui_setup, ui_event_setup, LV_EVENT_ALL, NULL);
     player_start(&v_player);
-    player_control(&v_player, PLAYER_CMD_INIT, "video/start.avi");
-    timer = lv_timer_create(video_timer, 5500, NULL);
-    lv_timer_set_repeat_count(timer, 1);
+	start_timer = lv_timer_create(start_timer_callback, 400, NULL);
+    lv_timer_set_repeat_count(start_timer, 1);
+    video_timer = lv_timer_create(video_timer_callback, 5500, NULL);
+    lv_timer_set_repeat_count(video_timer, 1);
     WiFi_Scan();
 	setup_time();
-	rtc_timer = lv_timer_create(rtc_timer_callback, 2000, NULL);
+	rtc_timer = lv_timer_create(rtc_timer_callback, 5 * 1000, NULL);
 }
