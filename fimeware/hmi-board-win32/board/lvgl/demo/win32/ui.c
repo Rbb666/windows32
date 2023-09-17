@@ -1488,69 +1488,6 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_state_modify( ui_sys_info_panel, LV_STATE_FOCUSED, _UI_MODIFY_STATE_REMOVE);
 }
 }
-lv_timer_t *video_move_timer;
-void video_mv_timer_callback(lv_timer_t *timer)
-{
-	_ui_flag_modify(ui_video_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-}
-void ui_event_video_panel( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
-lv_indev_wait_release(lv_indev_get_act());
-      movetoleft_Animation(ui_video_panel, 0);
-	  video_move_timer = lv_timer_create(video_mv_timer_callback, 400, NULL);
-	  lv_timer_set_repeat_count(video_move_timer, 1);
-}
-}
-lv_timer_t *video_play_timer;
-void video_timer_callback(lv_timer_t *timer)
-{
-	play_video(timer->user_data);
-}
-void ui_event_video_01( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_CLICKED) {
-      movetoleft_Animation(ui_video_panel, 0);
-      fadein_Animation(ui_video_player_panel, 0);
-      _ui_opacity_set( ui_video_player_panel, 0);
-      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/1.avi");
-	  lv_timer_set_repeat_count(video_play_timer, 1);
-}
-}
-void ui_event_video_02( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_CLICKED) {
-      movetoleft_Animation(ui_video_panel, 0);
-      fadein_Animation(ui_video_player_panel, 0);
-      _ui_opacity_set( ui_video_player_panel, 0);
-      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/2.avi");
-	  lv_timer_set_repeat_count(video_play_timer, 1);
-}
-}
-void ui_event_video_03( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_CLICKED) {
-      fadein_Animation(ui_video_player_panel, 0);
-      movetoleft_Animation(ui_video_panel, 0);
-      _ui_opacity_set( ui_video_player_panel, 0);
-      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/3.avi");
-	  lv_timer_set_repeat_count(video_play_timer, 1);
-}
-}
-void ui_event_video_04( lv_event_t * e) {
-    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_CLICKED) {
-      fadein_Animation(ui_video_player_panel, 0);
-      movetoleft_Animation(ui_video_panel, 0);
-      _ui_opacity_set( ui_video_player_panel, 0);
-      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/4.avi");
-	  lv_timer_set_repeat_count(video_play_timer, 1);
-}
-}
 static lv_timer_t *mc_timer;
 void ui_event_music_panel( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
@@ -1782,6 +1719,81 @@ if ( event_code == LV_EVENT_CLICKED) {
       _ui_flag_modify( ui_photos_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
 }
 }
+lv_timer_t *video_move_timer;
+void video_mv_timer_callback(lv_timer_t *timer)
+{
+	_ui_flag_modify(ui_video_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+void ui_event_video_panel( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
+lv_indev_wait_release(lv_indev_get_act());
+      movetoleft_Animation(ui_video_panel, 0);
+	  video_move_timer = lv_timer_create(video_mv_timer_callback, 400, NULL);
+	  lv_timer_set_repeat_count(video_move_timer, 1);
+}
+}
+lv_timer_t *video_play_timer;
+void video_timer_callback(lv_timer_t *timer)
+{
+	play_video(timer->user_data);
+}
+void ui_event_video_01( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      movetoleft_Animation(ui_video_panel, 0);
+      fadein_Animation(ui_video_player_panel, 0);
+      _ui_opacity_set( ui_video_player_panel, 0);
+      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/1.avi");
+	  lv_timer_set_repeat_count(video_play_timer, 1);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_time, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+}
+void ui_event_video_02( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      movetoleft_Animation(ui_video_panel, 0);
+      fadein_Animation(ui_video_player_panel, 0);
+      _ui_opacity_set( ui_video_player_panel, 0);
+      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/2.avi");
+	  lv_timer_set_repeat_count(video_play_timer, 1);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_time, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+}
+void ui_event_video_03( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      fadein_Animation(ui_video_player_panel, 0);
+      movetoleft_Animation(ui_video_panel, 0);
+      _ui_opacity_set( ui_video_player_panel, 0);
+      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/3.avi");
+	  lv_timer_set_repeat_count(video_play_timer, 1);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_time, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+}
+void ui_event_video_04( lv_event_t * e) {
+    lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
+if ( event_code == LV_EVENT_CLICKED) {
+      fadein_Animation(ui_video_player_panel, 0);
+      movetoleft_Animation(ui_video_panel, 0);
+      _ui_opacity_set( ui_video_player_panel, 0);
+      _ui_flag_modify( ui_video_player_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+	  video_play_timer = lv_timer_create(video_timer_callback, 450, "video/4.avi");
+	  lv_timer_set_repeat_count(video_play_timer, 1);
+}
+if ( event_code == LV_EVENT_CLICKED) {
+      _ui_flag_modify( ui_time, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+}
+}
 void ui_event_video_player_panel( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
 if ( event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT  ) {
@@ -1842,7 +1854,7 @@ if ( event_code == LV_EVENT_CLICKED) {
 }
 void ui_event_setting( lv_event_t * e) {
     lv_event_code_t event_code = lv_event_get_code(e);lv_obj_t * target = lv_event_get_target(e);
-if ( event_code == LV_EVENT_PRESSED) {
+if ( event_code == LV_EVENT_CLICKED) {
       passed_Animation(ui_setting, 0);
       openwin_Animation(ui_Setting_Pannel, 0);
       _ui_flag_modify( ui_Setting_Pannel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
