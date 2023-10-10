@@ -1,5 +1,10 @@
 [
  {
+  "path": "/packages/iot/kawaii-mqtt", 
+  "ver": "latest", 
+  "name": "KAWAII_MQTT"
+ }, 
+ {
   "path": "/packages/iot/WiFi/rw007", 
   "ver": "v2.1.0", 
   "name": "RW007"

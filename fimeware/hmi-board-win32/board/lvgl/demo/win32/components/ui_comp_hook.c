@@ -16,3 +16,11 @@ void ui_comp_buttonround1_create_hook(lv_obj_t * comp)
 void ui_comp_settingbtn_create_hook(lv_obj_t * comp)
 {
 }
+
+void ui_comp_Button_create_hook( lv_obj_t * comp)
+{
+}
+
+void ui_comp_dot_create_hook( lv_obj_t * comp)
+{
+}

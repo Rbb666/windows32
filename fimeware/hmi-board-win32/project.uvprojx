@@ -340,7 +340,7 @@
               <MiscControls>-Wno-license-management -Wunused -Wuninitialized -Wall  -Wmissing-declarations  -Wpointer-arith  -Waggregate-return -Wfloat-equal</MiscControls>
               <Define>RT_USING_LIBC, RT_USING_ARMLIBC, __STDC_LIMIT_MACROS, __RTTHREAD__, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine></Undefine>
-              <IncludePath>packages\rw007-v2.1.0\inc;packages\LVGL-v8.3.8\src\extra\widgets\menu;packages\LVGL-v8.3.8\src\extra\layouts\flex;board\lvgl\demo\win32;rt-thread\components\libc\compilers\common\extension;rt-thread\components\finsh;packages\tlsf-v1.0.0\src;packages\wavplayer-latest\inc;packages\LVGL-v8.3.8\src\draw\sw;packages\LVGL-v8.3.8\src\extra\libs\rlottie;packages\LVGL-v8.3.8\src\extra\libs\png;packages\LVGL-v8.3.8\src\draw\sdl;packages\LVGL-v8.3.8\src\extra\libs\freetype;rt-thread\components\drivers\touch;packages\LVGL-v8.3.8\src\extra\widgets\calendar;packages\rw007-v2.1.0;board\ports\touch\gt911\inc;rt-thread\components\dfs\dfs_v1\include;rt-thread\components\net\lwip\port;board\lvgl\demo\win32\screens;rt-thread\components\drivers\include;rt-thread\include;packages\LVGL-v8.3.8\src\extra\others\ime;rt-thread\components\drivers\include;board\ports;packages\LVGL-v8.3.8\src\hal;packages\LVGL-v8.3.8\src\extra\widgets\colorwheel;board\lvgl;packages\LVGL-v8.3.8\env_support\rt-thread\squareline;libraries\HAL_Drivers;packages\LVGL-v8.3.8\src\draw\renesas;packages\LVGL-v8.3.8\src\extra\others;packages\LVGL-v8.3.8\src\extra\themes\basic;packages\LVGL-v8.3.8\src\extra\widgets\chart;packages\wavplayer-latest;packages\LVGL-v8.3.8\src\extra\widgets\spinner;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\include;packages\LVGL-v8.3.8\src\core;packages\LVGL-v8.3.8\src\extra\others\imgfont;.;packages\optparse-v1.0.0;board\ports\avi\player;packages\LVGL-v8.3.8\src\extra\widgets\list;packages\LVGL-v8.3.8\src\extra\themes;rt-thread\components\net\lwip\lwip-2.0.3\src\include;packages\LVGL-v8.3.8\src\extra\themes\default;packages\LVGL-v8.3.8\env_support\rt-thread\squareline\ui\lvgl;rt-thread\components\net\sal\include\socket\sys_socket;packages\LVGL-v8.3.8\src\extra\others\fragment;packages\LVGL-v8.3.8\src\extra\widgets;packages\LVGL-v8.3.8\src\extra\libs\bmp;packages\LVGL-v8.3.8\src\extra\libs\qrcode;rt-thread\components\drivers\audio;board\lvgl\demo\file_explorer;packages\LVGL-v8.3.8\src\widgets;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\widgets\meter;board\lvgl\demo\win32\images;packages\LVGL-v8.3.8\src\extra\layouts\grid;packages\LVGL-v8.3.8\src\draw\arm2d;rt-thread\components\net\sal\include;packages\LVGL-v8.3.8\src\extra\layouts;packages\LVGL-v8.3.8\src;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\env_support\rt-thread;rt-thread\libcpu\arm\common;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\widgets\span;packages\LVGL-v8.3.8\src\misc;packages\LVGL-v8.3.8\src\extra\libs\sjpg;packages\LVGL-v8.3.8\src\font;packages\LVGL-v8.3.8\src\extra\others\msg;packages\LVGL-v8.3.8\src\extra\widgets\animimg;rt-thread\components\libc\posix\io\poll;packages\LVGL-v8.3.8\src\extra\libs\gif;packages\LVGL-v8.3.8\src\draw\stm32_dma2d;packages\LVGL-v8.3.8\src\draw\nxp\vglite;packages\LVGL-v8.3.8\src\extra\widgets\tabview;packages\LVGL-v8.3.8\src\extra\widgets\tileview;packages\LVGL-v8.3.8\src\extra\widgets\spinbox;rt-thread\components\libc\compilers\common\extension\fcntl\octal;board\ports\audio;rt-thread\components\net\sal\impl;board\ports\wifi;rt-thread\libcpu\arm\cortex-m4;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\widgets\keyboard;packages\LVGL-v8.3.8\src\extra\widgets\led;libraries\HAL_Drivers\config;rt-thread\components\libc\posix\ipc;packages\LVGL-v8.3.8\src\draw\swm341_dma2d;packages\LVGL-v8.3.8\src\extra;board\lvgl\demo;rt-thread\components\drivers\wlan;packages\LVGL-v8.3.8\src\extra\libs\fsdrv;packages\LVGL-v8.3.8\src\extra\others\gridnav;packages\LVGL-v8.3.8\src\extra\widgets\msgbox;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-v8.3.8\src\extra\widgets\win;rt-thread\components\net\sal\include\dfs_net;board;packages\LVGL-v8.3.8\src\extra\others\monkey;packages\LVGL-v8.3.8\src\extra\libs\ffmpeg;rt-thread\components\net\sal\include\socket;rt-thread\components\net\netdev\include;rt-thread\components\dfs\dfs_v1\filesystems\elmfat;packages\LVGL-v8.3.8\src\extra\others\snapshot;board\lvgl\demo\win32\fonts;rt-thread\components\libc\posix\io\stdio;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\draw\nxp\pxp;packages\LVGL-v8.3.8\src\draw;packages\LVGL-v8.3.8\src\extra\libs;packages\LVGL-v8.3.8\src\extra\themes\mono;board\ports\avi;packages\LVGL-v8.3.8\src\extra\widgets\imgbtn</IncludePath>
+              <IncludePath>packages\LVGL-v8.3.8\src\extra\themes\default;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src;packages\LVGL-v8.3.8\src\draw\stm32_dma2d;packages\LVGL-v8.3.8\src\extra\libs\fsdrv;libraries\HAL_Drivers\config;packages\LVGL-v8.3.8\src\extra\layouts\flex;rt-thread\components\net\sal\include\dfs_net;packages\LVGL-v8.3.8\src\extra\widgets\span;rt-thread\components\drivers\include;board\ports;packages\LVGL-v8.3.8\src\extra\libs\png;packages\LVGL-v8.3.8\src\extra\others\fragment;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-v8.3.8\src\core;rt-thread\components\drivers\include;packages\tlsf-v1.0.0\src;packages\LVGL-v8.3.8\src\font;packages\kawaii-mqtt-latest\common\log;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\net\lwip\port;.;packages\LVGL-v8.3.8\src\draw;rt-thread\components\libc\posix\ipc;packages\LVGL-v8.3.8\src\draw\sdl;packages\LVGL-v8.3.8\env_support\rt-thread\squareline\ui\lvgl;packages\kawaii-mqtt-latest\mqtt;packages\LVGL-v8.3.8\src\extra\widgets\spinbox;packages\LVGL-v8.3.8\src\extra\others\gridnav;packages\wavplayer-latest\inc;packages\LVGL-v8.3.8\src\draw\nxp\pxp;packages\LVGL-v8.3.8\src\extra\libs\sjpg;packages\kawaii-mqtt-latest\mqttclient;board\ports\touch\gt911\inc;packages\kawaii-mqtt-latest\platform\RT-Thread;packages\LVGL-v8.3.8\src\extra\themes\basic;packages\LVGL-v8.3.8\src\extra\widgets\spinner;rt-thread\components\net\sal\include;packages\kawaii-mqtt-latest\common;packages\LVGL-v8.3.8\src\extra\libs\bmp;rt-thread\components\drivers\touch;packages\kawaii-mqtt-latest\network;rt-thread\components\drivers\audio;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\draw\nxp\vglite;packages\LVGL-v8.3.8\src\extra\widgets\tileview;board;packages\LVGL-v8.3.8\env_support\rt-thread;packages\LVGL-v8.3.8\src\extra\widgets\animimg;packages\LVGL-v8.3.8\src\extra\widgets\keyboard;rt-thread\components\finsh;packages\LVGL-v8.3.8\src\extra\widgets\colorwheel;packages\LVGL-v8.3.8\src\extra\widgets\chart;rt-thread\components\dfs\dfs_v1\include;board\lvgl\demo\win32\components;rt-thread\components\net\sal\include\socket\sys_socket;packages\LVGL-v8.3.8\src\extra\themes\mono;packages\LVGL-v8.3.8\src\draw\arm2d;packages\LVGL-v8.3.8\src\draw\renesas;packages\LVGL-v8.3.8\src\extra\layouts\grid;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;rt-thread\components\libc\compilers\common\include;packages\LVGL-v8.3.8\src\extra\widgets\msgbox;packages\LVGL-v8.3.8\env_support\rt-thread\squareline;board\lvgl\demo\win32;packages\LVGL-v8.3.8\src\extra\others\snapshot;packages\wavplayer-latest;board\ports\avi;board\ports\wifi;packages\LVGL-v8.3.8\src\draw\sw;board\lvgl\demo\file_explorer;packages\LVGL-v8.3.8\src\extra\others\msg;rt-thread\libcpu\arm\cortex-m4;board\lvgl\demo\win32\fonts;packages\LVGL-v8.3.8\src\extra;packages\LVGL-v8.3.8\src\misc;packages\LVGL-v8.3.8\src\extra\others\imgfont;packages\LVGL-v8.3.8\src\extra\widgets\calendar;packages\LVGL-v8.3.8\src\extra\others\monkey;packages\LVGL-v8.3.8\src\extra\themes;packages\LVGL-v8.3.8\src\extra\layouts;libraries\HAL_Drivers;packages\LVGL-v8.3.8\src\extra\others;packages\LVGL-v8.3.8\src\extra\libs\ffmpeg;rt-thread\components\libc\compilers\common\extension\fcntl\octal;board\lvgl;packages\LVGL-v8.3.8\src\extra\widgets\tabview;packages\LVGL-v8.3.8\src\draw\swm341_dma2d;packages\LVGL-v8.3.8\src\extra\libs\qrcode;rt-thread\components\drivers\wlan;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\gif;packages\LVGL-v8.3.8\src\extra\widgets\imgbtn;rt-thread\include;rt-thread\components\net\lwip\lwip-2.0.3\src\include;packages\LVGL-v8.3.8\src\extra\widgets\win;packages\LVGL-v8.3.8\src\extra\widgets\list;rt-thread\components\libc\posix\io\stdio;rt-thread\components\net\netdev\include;packages\LVGL-v8.3.8\src\extra\widgets\menu;rt-thread\components\dfs\dfs_v1\filesystems\elmfat;board\ports\avi\player;packages\rw007-v2.1.0;packages\LVGL-v8.3.8\src\extra\others\ime;board\lvgl\demo\win32\images;board\ports\audio;board\lvgl\demo;packages\LVGL-v8.3.8\src\extra\widgets\meter;packages\LVGL-v8.3.8\src\extra\widgets;packages\LVGL-v8.3.8\src\extra\widgets\led;packages\LVGL-v8.3.8\src\extra\libs;rt-thread\libcpu\arm\common;board\lvgl\demo\win32\screens;packages\LVGL-v8.3.8\src\widgets;rt-thread\components\net\sal\include\socket;packages\optparse-v1.0.0;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;rt-thread\components\libc\posix\io\poll;packages\LVGL-v8.3.8\src\hal;packages\LVGL-v8.3.8\src\extra\libs\freetype;rt-thread\components\drivers\spi;rt-thread\components\net\sal\impl;packages\rw007-v2.1.0\inc;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\rlottie;rt-thread\components\drivers\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1502,6 +1502,136 @@
               <FileName>gt911.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\ports\touch\gt911\src\gt911.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>kawaii_mqtt</GroupName>
+          <Files>
+            <File>
+              <FileName>network.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\network\network.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_net_socket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_net_socket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSerializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSerializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>mqttclient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqttclient\mqttclient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTConnectClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>arch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\log\arch\rt-thread\arch.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>nettype_tcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\network\nettype_tcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTUnsubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTUnsubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_memory.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_memory.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_mutex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_mutex.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTFormat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTFormat.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\log\fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>nettype_tls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\network\nettype_tls.c</FilePath>
+            </File>
+            <File>
+              <FileName>random.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\random.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTDeserializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTDeserializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTPacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTPacket.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTConnectServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_thread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_thread.c</FilePath>
+            </File>
+            <File>
+              <FileName>mqtt_list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\mqtt_list.c</FilePath>
+            </File>
+            <File>
+              <FileName>format.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\log\format.c</FilePath>
+            </File>
+            <File>
+              <FileName>salof.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-latest\common\log\salof.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -12712,6 +12842,31 @@
           <GroupName>win32-demo</GroupName>
           <Files>
             <File>
+              <FileName>ui_comp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\components\ui_comp.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_comp_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\components\ui_comp_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_comp_dot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\components\ui_comp_dot.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_comp_hook.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\components\ui_comp_hook.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_comp_settingbtn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\components\ui_comp_settingbtn.c</FilePath>
+            </File>
+            <File>
               <FileName>ui_font_Mona_Sans.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\fonts\ui_font_Mona_Sans.c</FilePath>
@@ -12760,6 +12915,26 @@
               <FileName>ui_img_ble_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_ble_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_btn1_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_btn1_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_btn1_press_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_btn1_press_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_btn_print_down_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_btn_print_down_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_btn_print_top_off_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_btn_print_top_off_png.c</FilePath>
             </File>
             <File>
               <FileName>ui_img_clash_png.c</FileName>
@@ -12837,6 +13012,11 @@
               <FilePath>board\lvgl\demo\win32\images\ui_img_hide_png.c</FilePath>
             </File>
             <File>
+              <FileName>ui_img_humi_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_humi_png.c</FilePath>
+            </File>
+            <File>
               <FileName>ui_img_info_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_info_png.c</FilePath>
@@ -12875,6 +13055,21 @@
               <FileName>ui_img_next_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_next_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_no_signal_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_no_signal_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_ok_big_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_ok_big_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_ok_small_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_ok_small_png.c</FilePath>
             </File>
             <File>
               <FileName>ui_img_pc_big_png.c</FileName>
@@ -13002,6 +13197,11 @@
               <FilePath>board\lvgl\demo\win32\images\ui_img_right_png.c</FilePath>
             </File>
             <File>
+              <FileName>ui_img_roller_bg_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_roller_bg_png.c</FilePath>
+            </File>
+            <File>
               <FileName>ui_img_scale_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_scale_png.c</FilePath>
@@ -13047,6 +13247,11 @@
               <FilePath>board\lvgl\demo\win32\images\ui_img_suppermario_png.c</FilePath>
             </File>
             <File>
+              <FileName>ui_img_sure_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_sure_png.c</FilePath>
+            </File>
+            <File>
               <FileName>ui_img_suspend_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_suspend_png.c</FilePath>
@@ -13055,6 +13260,11 @@
               <FileName>ui_img_talk_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_talk_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_temp_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_temp_png.c</FilePath>
             </File>
             <File>
               <FileName>ui_img_unlike_png.c</FileName>
@@ -13117,6 +13327,11 @@
               <FilePath>board\lvgl\demo\win32\images\ui_img_wifi_15_png.c</FilePath>
             </File>
             <File>
+              <FileName>ui_img_wifi_connect_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_wifi_connect_png.c</FilePath>
+            </File>
+            <File>
               <FileName>ui_img_wifi_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_wifi_png.c</FilePath>
@@ -13130,6 +13345,16 @@
               <FileName>ui_main.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\screens\ui_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_mqtt_Setting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\screens\ui_mqtt_Setting.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_setting_param.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\screens\ui_setting_param.c</FilePath>
             </File>
             <File>
               <FileName>ui_setup.c</FileName>

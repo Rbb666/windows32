@@ -12,6 +12,8 @@ lv_obj_t *ui_settingbtn_create(lv_obj_t *comp_parent) {
 
 lv_obj_t *cui_settingbtn;
 cui_settingbtn = lv_imgbtn_create(comp_parent);
+lv_imgbtn_set_src(cui_settingbtn, LV_IMGBTN_STATE_RELEASED, NULL, &ui_img_setting_png, NULL);
+lv_imgbtn_set_src(cui_settingbtn, LV_IMGBTN_STATE_PRESSED, NULL, &ui_img_setting_png, NULL);
 lv_obj_set_width( cui_settingbtn, 30);
 lv_obj_set_height( cui_settingbtn, 28);
 lv_obj_set_x( cui_settingbtn, 5 );

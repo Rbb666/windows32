@@ -17,8 +17,8 @@ void del_component_child_event_cb(lv_event_t* e);
 
 lv_obj_t * ui_comp_get_child(lv_obj_t *comp, uint32_t child_idx);
 extern uint32_t LV_EVENT_GET_COMP_CHILD;
-#include "ui_comp_button_pause2.h"
-#include "ui_comp_buttonround1.h"
+#include "ui_comp_button.h"
+#include "ui_comp_dot.h"
 #include "ui_comp_settingbtn.h"
 
 #ifdef __cplusplus

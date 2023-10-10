@@ -10,17 +10,15 @@
 extern "C" {
 #endif
 
-void shutdown_music(lv_event_t * e);
-void switch_player1_func(lv_event_t * e);
-void switch_player2_func(lv_event_t * e);
-void play_next_music(lv_event_t * e);
-void play_music_function(lv_event_t * e);
-void pause_music_function(lv_event_t * e);
-void play_pre_music(lv_event_t * e);
-void move_video_panel_to_left(lv_event_t * e);
+void scan_wifi_func(lv_event_t * e);
+void connect_wifi_event(lv_event_t * e);
+void set_mqtt_param_func(lv_event_t * e);
+void show_text_sync(lv_event_t * e);
+void get_keyboard_value(lv_event_t * e);
+void save_alarm_parameter(lv_event_t * e);
+void zoom_window(lv_event_t * e);
 void backlight_slider_event_cb(lv_event_t * e);
 void voice_slider_event_cb(lv_event_t * e);
-void connect_wifi_event(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

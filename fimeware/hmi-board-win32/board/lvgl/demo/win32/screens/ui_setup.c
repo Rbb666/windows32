@@ -4,89 +4,232 @@
 // Project name: SquareLine_Project
 
 #include "../ui.h"
-#include "utils.h"
-#include "sys/time.h"
-
-#define RTC_NAME       "rtc"
-
-struct player v_player;
-static lv_timer_t *start_timer;
-static lv_timer_t *video_timer;
-static lv_timer_t *rtc_timer;
-extern int WiFi_Scan(void);
-
-static void start_timer_callback(lv_timer_t *timer)
-{
-	player_control(&v_player, PLAYER_CMD_INIT, "video/start.avi");
-}
-
-static void video_timer_callback(lv_timer_t *timer)
-{
-    _ui_screen_change(&ui_main, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_main_screen_init);
-}
-
-static void rtc_timer_callback(lv_timer_t *timer)
-{
-    time_t timep;
-    struct tm *p;
- 
-    time(&timep);
-    p = localtime(&timep);
-	if (!lv_obj_has_flag(ui_time, LV_OBJ_FLAG_HIDDEN))
-	{
-		lv_label_set_text_fmt(ui_time, "%d:%d", p->tm_hour, p->tm_min);
-	}
-}
-
-int setup_time(void)
-{
-    rt_err_t ret = RT_EOK;
-    rt_device_t device = RT_NULL;
-
-    device = rt_device_find(RTC_NAME);
-    if (!device)
-    {
-        rt_kprintf("find %s failed!", RTC_NAME);
-        return RT_ERROR;
-    }
-
-    if (rt_device_open(device, 0) != RT_EOK)
-    {
-        rt_kprintf("open %s failed!", RTC_NAME);
-        return RT_ERROR;
-    }
-
-    ret = set_date(2023, 9, 16);
-    if (ret != RT_EOK)
-    {
-        rt_kprintf("set RTC date failed\n");
-        return ret;
-    }
-
-    ret = set_time(23, 15, 50);
-    if (ret != RT_EOK)
-    {
-        rt_kprintf("set RTC time failed\n");
-        return ret;
-    }
-
-    return ret;
-}
 
 void ui_setup_screen_init(void)
 {
-    ui_setup = lv_obj_create(NULL);
-    lv_obj_clear_flag(ui_setup, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_setup, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_setup, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+ui_setup = lv_obj_create(NULL);
+lv_obj_clear_flag( ui_setup, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_setup, lv_color_hex(0x21212E), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_setup, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_grad_color(ui_setup, lv_color_hex(0x2D394F), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_main_stop(ui_setup, 175, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_grad_stop(ui_setup, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_grad_dir(ui_setup, LV_GRAD_DIR_VER, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-    lv_obj_add_event_cb(ui_setup, ui_event_setup, LV_EVENT_ALL, NULL);
-    player_start(&v_player);
-	start_timer = lv_timer_create(start_timer_callback, 400, NULL);
-    lv_timer_set_repeat_count(start_timer, 1);
-    video_timer = lv_timer_create(video_timer_callback, 5500, NULL);
-    lv_timer_set_repeat_count(video_timer, 1);
-    WiFi_Scan();
-	setup_time();
-	rtc_timer = lv_timer_create(rtc_timer_callback, 5 * 1000, NULL);
+ui_header_group1 = lv_obj_create(ui_setup);
+lv_obj_set_height( ui_header_group1, 50);
+lv_obj_set_width( ui_header_group1, lv_pct(100));
+lv_obj_set_align( ui_header_group1, LV_ALIGN_TOP_MID );
+lv_obj_clear_flag( ui_header_group1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_header_group1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_header_group1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_header_group1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_wizard_group1 = lv_obj_create(ui_header_group1);
+lv_obj_set_width( ui_wizard_group1, 256);
+lv_obj_set_height( ui_wizard_group1, 50);
+lv_obj_set_align( ui_wizard_group1, LV_ALIGN_CENTER );
+lv_obj_set_flex_flow(ui_wizard_group1,LV_FLEX_FLOW_ROW);
+lv_obj_set_flex_align(ui_wizard_group1, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+lv_obj_clear_flag( ui_wizard_group1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_wizard_group1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_wizard_group1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_wizard_group1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_row(ui_wizard_group1, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_column(ui_wizard_group1, 12, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_dot3 = ui_dot_create(ui_wizard_group1);
+lv_obj_set_x( ui_dot3, 0 );
+lv_obj_set_y( ui_dot3, 0 );
+lv_obj_add_state( ui_dot3, LV_STATE_CHECKED );     /// States
+
+
+lv_obj_add_flag( ui_comp_get_child(ui_dot3, UI_COMP_DOT_READY_BG), LV_OBJ_FLAG_HIDDEN );   /// Flags
+
+lv_obj_add_flag( ui_comp_get_child(ui_dot3, UI_COMP_DOT_IMAGE11), LV_OBJ_FLAG_HIDDEN );   /// Flags
+
+ui_line2 = lv_obj_create(ui_wizard_group1);
+lv_obj_set_width( ui_line2, 50);
+lv_obj_set_height( ui_line2, 3);
+lv_obj_set_align( ui_line2, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_line2, LV_OBJ_FLAG_CHECKABLE );   /// Flags
+lv_obj_clear_flag( ui_line2, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_line2, lv_color_hex(0x373648), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_line2, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_line2, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_line2, lv_color_hex(0x4EBE4B), LV_PART_MAIN | LV_STATE_CHECKED );
+lv_obj_set_style_bg_opa(ui_line2, 255, LV_PART_MAIN| LV_STATE_CHECKED);
+
+ui_dot4 = ui_dot_create(ui_wizard_group1);
+lv_obj_set_x( ui_dot4, 0 );
+lv_obj_set_y( ui_dot4, 0 );
+lv_obj_clear_state( ui_dot4, LV_STATE_CHECKED );   /// States
+
+lv_label_set_text(ui_comp_get_child(ui_dot4, UI_COMP_DOT_LABEL_DOT),"2");
+
+
+
+ui_line4 = lv_obj_create(ui_wizard_group1);
+lv_obj_set_width( ui_line4, 50);
+lv_obj_set_height( ui_line4, 3);
+lv_obj_set_align( ui_line4, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_line4, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_line4, lv_color_hex(0x373648), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_line4, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_line4, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_dot6 = ui_dot_create(ui_wizard_group1);
+lv_obj_set_x( ui_dot6, 0 );
+lv_obj_set_y( ui_dot6, 0 );
+lv_obj_clear_state( ui_dot6, LV_STATE_CHECKED );   /// States
+
+lv_label_set_text(ui_comp_get_child(ui_dot6, UI_COMP_DOT_LABEL_DOT),"3");
+
+
+
+ui_wifi_group = lv_obj_create(ui_setup);
+lv_obj_set_width( ui_wifi_group, 145);
+lv_obj_set_height( ui_wifi_group, 145);
+lv_obj_set_x( ui_wifi_group, 20 );
+lv_obj_set_y( ui_wifi_group, 10 );
+lv_obj_set_align( ui_wifi_group, LV_ALIGN_LEFT_MID );
+lv_obj_clear_flag( ui_wifi_group, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_wifi_group, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_wifi_group, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_wifi_group, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_wlan_image = lv_img_create(ui_wifi_group);
+lv_img_set_src(ui_wlan_image, &ui_img_no_signal_png);
+lv_obj_set_width( ui_wlan_image, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_wlan_image, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_wlan_image, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_wlan_image, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_wlan_image, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+
+ui_wifi_Spinner = lv_spinner_create(ui_wifi_group,1000,90);
+lv_obj_set_width( ui_wifi_Spinner, 120);
+lv_obj_set_height( ui_wifi_Spinner, 120);
+lv_obj_set_align( ui_wifi_Spinner, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_wifi_Spinner, LV_OBJ_FLAG_CLICKABLE );    /// Flags
+lv_obj_set_style_arc_color(ui_wifi_Spinner, lv_color_hex(0x8F8FFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_arc_opa(ui_wifi_Spinner, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_arc_width(ui_wifi_Spinner, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+lv_obj_set_style_arc_color(ui_wifi_Spinner, lv_color_hex(0xFFFFFF), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_arc_opa(ui_wifi_Spinner, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_arc_width(ui_wifi_Spinner, 5, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+
+ui_Network_panel = lv_obj_create(ui_setup);
+lv_obj_set_width( ui_Network_panel, 265);
+lv_obj_set_height( ui_Network_panel, 185);
+lv_obj_set_x( ui_Network_panel, -20 );
+lv_obj_set_y( ui_Network_panel, 20 );
+lv_obj_set_align( ui_Network_panel, LV_ALIGN_RIGHT_MID );
+lv_obj_clear_flag( ui_Network_panel, LV_OBJ_FLAG_GESTURE_BUBBLE | LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_Network_panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_Network_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_Network_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_wifi_input_panel = lv_obj_create(ui_setup);
+lv_obj_set_width( ui_wifi_input_panel, 190);
+lv_obj_set_height( ui_wifi_input_panel, 90);
+lv_obj_set_x( ui_wifi_input_panel, 0 );
+lv_obj_set_y( ui_wifi_input_panel, -40 );
+lv_obj_set_align( ui_wifi_input_panel, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_wifi_input_panel, LV_OBJ_FLAG_HIDDEN );   /// Flags
+lv_obj_clear_flag( ui_wifi_input_panel, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_bg_color(ui_wifi_input_panel, lv_color_hex(0x4A4A4A), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_wifi_input_panel, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_wifi_input_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_wifi_input_panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_PRESSED );
+lv_obj_set_style_bg_opa(ui_wifi_input_panel, 255, LV_PART_MAIN| LV_STATE_PRESSED);
+
+ui_wifiTextArea = lv_textarea_create(ui_wifi_input_panel);
+lv_obj_set_width( ui_wifiTextArea, 150);
+lv_obj_set_height( ui_wifiTextArea, 26);
+lv_obj_set_x( ui_wifiTextArea, 0 );
+lv_obj_set_y( ui_wifiTextArea, -3 );
+lv_obj_set_align( ui_wifiTextArea, LV_ALIGN_TOP_MID );
+lv_textarea_set_placeholder_text(ui_wifiTextArea,"wifi password");
+lv_obj_clear_flag( ui_wifiTextArea, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_text_color(ui_wifiTextArea, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_wifiTextArea, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_align(ui_wifiTextArea, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_text_font(ui_wifiTextArea, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_radius(ui_wifiTextArea, 3, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_wifiTextArea, lv_color_hex(0x2E2E2E), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_wifiTextArea, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_wifiTextArea, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_left(ui_wifiTextArea, 8, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_right(ui_wifiTextArea, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_top(ui_wifiTextArea, 6, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_pad_bottom(ui_wifiTextArea, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+lv_obj_set_style_bg_color(ui_wifiTextArea, lv_color_hex(0xFFFFFF), LV_PART_CURSOR | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_wifiTextArea, 255, LV_PART_CURSOR| LV_STATE_DEFAULT);
+
+ui_cancel_btn = lv_btn_create(ui_wifi_input_panel);
+lv_obj_set_width( ui_cancel_btn, 63);
+lv_obj_set_height( ui_cancel_btn, 22);
+lv_obj_set_x( ui_cancel_btn, 5 );
+lv_obj_set_y( ui_cancel_btn, 0 );
+lv_obj_set_align( ui_cancel_btn, LV_ALIGN_BOTTOM_LEFT );
+lv_obj_add_flag( ui_cancel_btn, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_clear_flag( ui_cancel_btn, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_cancel_btn, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_cancel_btn, lv_color_hex(0x969696), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_cancel_btn, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_cancel_btn, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_PRESSED );
+lv_obj_set_style_bg_opa(ui_cancel_btn, 255, LV_PART_MAIN| LV_STATE_PRESSED);
+
+ui_Label12 = lv_label_create(ui_cancel_btn);
+lv_obj_set_width( ui_Label12, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label12, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label12, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label12,"cancel");
+lv_obj_set_style_text_font(ui_Label12, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_cancel_btn1 = lv_btn_create(ui_wifi_input_panel);
+lv_obj_set_width( ui_cancel_btn1, 63);
+lv_obj_set_height( ui_cancel_btn1, 22);
+lv_obj_set_x( ui_cancel_btn1, -5 );
+lv_obj_set_y( ui_cancel_btn1, 0 );
+lv_obj_set_align( ui_cancel_btn1, LV_ALIGN_BOTTOM_RIGHT );
+lv_obj_add_flag( ui_cancel_btn1, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
+lv_obj_clear_flag( ui_cancel_btn1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+lv_obj_set_style_radius(ui_cancel_btn1, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_cancel_btn1, lv_color_hex(0x969696), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_cancel_btn1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_cancel_btn1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_PRESSED );
+lv_obj_set_style_bg_opa(ui_cancel_btn1, 255, LV_PART_MAIN| LV_STATE_PRESSED);
+
+ui_Label13 = lv_label_create(ui_cancel_btn1);
+lv_obj_set_width( ui_Label13, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_Label13, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_Label13, LV_ALIGN_CENTER );
+lv_label_set_text(ui_Label13,"connect");
+lv_obj_set_style_text_font(ui_Label13, &lv_font_montserrat_12, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+ui_Keyboard1 = lv_keyboard_create(ui_setup);
+lv_obj_set_width( ui_Keyboard1, lv_pct(100));
+lv_obj_set_height( ui_Keyboard1, lv_pct(50));
+lv_obj_set_x( ui_Keyboard1, 0 );
+lv_obj_set_y( ui_Keyboard1, 200 );
+lv_obj_set_align( ui_Keyboard1, LV_ALIGN_BOTTOM_MID );
+lv_obj_add_flag( ui_Keyboard1, LV_OBJ_FLAG_HIDDEN );   /// Flags
+lv_obj_clear_flag( ui_Keyboard1, LV_OBJ_FLAG_GESTURE_BUBBLE );    /// Flags
+lv_obj_set_style_radius(ui_Keyboard1, 8, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_Keyboard1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_Keyboard1, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+lv_obj_set_style_radius(ui_Keyboard1, 2, LV_PART_ITEMS| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_Keyboard1, lv_color_hex(0xFFFFFF), LV_PART_ITEMS | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_Keyboard1, 255, LV_PART_ITEMS| LV_STATE_DEFAULT);
+
+lv_obj_add_event_cb(ui_wifiTextArea, ui_event_wifiTextArea, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_cancel_btn, ui_event_cancel_btn, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_cancel_btn1, ui_event_cancel_btn1, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_Keyboard1, ui_event_Keyboard1, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_setup, ui_event_setup, LV_EVENT_ALL, NULL);
+
 }

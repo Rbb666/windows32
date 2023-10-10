@@ -29,5 +29,11 @@ void play_video(const char *video_name);
 void exit_play_video(void);
 void wifi_show_ui(void);
 int WiFi_Join(const char *ssid, const char *password);
+void scalewin_Animation2(lv_obj_t *TargetObject, int delay, int direction);
+
+extern lv_obj_t *wifiname_list_btn;
+extern lv_obj_t *ui_wifi_icon;
+
+LV_IMG_DECLARE(ui_img_wifi_png);    // assets\wifi.png
 
 #endif
