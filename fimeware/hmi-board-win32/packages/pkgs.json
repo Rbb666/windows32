@@ -1,7 +1,7 @@
 [
  {
   "path": "/packages/iot/kawaii-mqtt", 
-  "ver": "latest", 
+  "ver": "v1.1.0", 
   "name": "KAWAII_MQTT"
  }, 
  {
@@ -15,6 +15,11 @@
   "name": "NETUTILS"
  }, 
  {
+  "path": "/packages/language/JSON/cJSON", 
+  "ver": "v1.7.15", 
+  "name": "CJSON"
+ }, 
+ {
   "path": "/packages/multimedia/LVGL/LVGL", 
   "ver": "v8.3.8", 
   "name": "LVGL"
@@ -23,6 +28,11 @@
   "path": "/packages/multimedia/wavplayer", 
   "ver": "latest", 
   "name": "WAVPLAYER"
+ }, 
+ {
+  "path": "/packages/tools/cpu_usage", 
+  "ver": "v1.0.0", 
+  "name": "CPU_USAGE"
  }, 
  {
   "path": "/packages/system/tlsf", 

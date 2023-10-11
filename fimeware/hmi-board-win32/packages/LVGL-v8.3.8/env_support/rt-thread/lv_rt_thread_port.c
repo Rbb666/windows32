@@ -31,6 +31,7 @@ extern void lv_port_indev_init(void);
 extern void lv_user_gui_init(void);
 
 static struct rt_thread lvgl_thread;
+static rt_mutex_t GuiMutex;
 
 #ifdef rt_align
 rt_align(RT_ALIGN_SIZE)
@@ -59,8 +60,10 @@ static void lvgl_thread_entry(void *parameter)
     /* handle the tasks of LVGL */
     while(1)
     {
+        rt_mutex_take(GuiMutex, RT_WAITING_FOREVER);
         lv_task_handler();
         rt_thread_mdelay(LV_DISP_DEF_REFR_PERIOD);
+        rt_mutex_release(GuiMutex);
     }
 }
 
@@ -68,6 +71,13 @@ static int lvgl_thread_init(void)
 {
     rt_err_t err;
 
+    GuiMutex = rt_mutex_create("lvgl", RT_IPC_FLAG_PRIO);
+    if (GuiMutex == RT_NULL)
+    {
+        rt_kprintf("create gui mutex failed.\n");
+        return -1;
+    }
+    
     err = rt_thread_init(&lvgl_thread, "LVGL", lvgl_thread_entry, RT_NULL,
            &lvgl_thread_stack[0], sizeof(lvgl_thread_stack), PKG_LVGL_THREAD_PRIO, 10);
     if(err != RT_EOK)
@@ -80,5 +90,23 @@ static int lvgl_thread_init(void)
     return 0;
 }
 INIT_APP_EXPORT(lvgl_thread_init);
+
+void ui_acquire(void)
+{
+    rt_thread_t thread = rt_thread_self();
+    if (thread != &lvgl_thread)
+    {
+        rt_mutex_take(GuiMutex, RT_WAITING_FOREVER);
+    }
+}
+
+void ui_release(void)
+{
+    rt_thread_t thread = rt_thread_self();
+    if (thread != &lvgl_thread)
+    {
+        rt_mutex_release(GuiMutex);
+    }
+}
 
 #endif /*__RTTHREAD__*/

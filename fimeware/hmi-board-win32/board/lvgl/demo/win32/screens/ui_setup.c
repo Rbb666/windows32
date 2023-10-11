@@ -131,7 +131,7 @@ lv_obj_set_style_bg_opa(ui_Network_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_border_width(ui_Network_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 ui_wifi_input_panel = lv_obj_create(ui_setup);
-lv_obj_set_width( ui_wifi_input_panel, 190);
+lv_obj_set_width( ui_wifi_input_panel, 215);
 lv_obj_set_height( ui_wifi_input_panel, 90);
 lv_obj_set_x( ui_wifi_input_panel, 0 );
 lv_obj_set_y( ui_wifi_input_panel, -40 );
@@ -139,7 +139,7 @@ lv_obj_set_align( ui_wifi_input_panel, LV_ALIGN_CENTER );
 lv_obj_add_flag( ui_wifi_input_panel, LV_OBJ_FLAG_HIDDEN );   /// Flags
 lv_obj_clear_flag( ui_wifi_input_panel, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 lv_obj_set_style_bg_color(ui_wifi_input_panel, lv_color_hex(0x4A4A4A), LV_PART_MAIN | LV_STATE_DEFAULT );
-lv_obj_set_style_bg_opa(ui_wifi_input_panel, 250, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_opa(ui_wifi_input_panel, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_border_width(ui_wifi_input_panel, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_bg_color(ui_wifi_input_panel, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_PRESSED );
 lv_obj_set_style_bg_opa(ui_wifi_input_panel, 255, LV_PART_MAIN| LV_STATE_PRESSED);
@@ -171,7 +171,7 @@ lv_obj_set_style_bg_opa(ui_wifiTextArea, 255, LV_PART_CURSOR| LV_STATE_DEFAULT);
 ui_cancel_btn = lv_btn_create(ui_wifi_input_panel);
 lv_obj_set_width( ui_cancel_btn, 63);
 lv_obj_set_height( ui_cancel_btn, 22);
-lv_obj_set_x( ui_cancel_btn, 5 );
+lv_obj_set_x( ui_cancel_btn, 15 );
 lv_obj_set_y( ui_cancel_btn, 0 );
 lv_obj_set_align( ui_cancel_btn, LV_ALIGN_BOTTOM_LEFT );
 lv_obj_add_flag( ui_cancel_btn, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags
@@ -192,7 +192,7 @@ lv_obj_set_style_text_font(ui_Label12, &lv_font_montserrat_12, LV_PART_MAIN| LV_
 ui_cancel_btn1 = lv_btn_create(ui_wifi_input_panel);
 lv_obj_set_width( ui_cancel_btn1, 63);
 lv_obj_set_height( ui_cancel_btn1, 22);
-lv_obj_set_x( ui_cancel_btn1, -5 );
+lv_obj_set_x( ui_cancel_btn1, -15 );
 lv_obj_set_y( ui_cancel_btn1, 0 );
 lv_obj_set_align( ui_cancel_btn1, LV_ALIGN_BOTTOM_RIGHT );
 lv_obj_add_flag( ui_cancel_btn1, LV_OBJ_FLAG_SCROLL_ON_FOCUS );   /// Flags

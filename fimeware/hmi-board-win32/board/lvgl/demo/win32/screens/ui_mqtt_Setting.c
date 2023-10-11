@@ -103,13 +103,26 @@ lv_obj_set_style_bg_color(ui_ok_group, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV
 lv_obj_set_style_bg_opa(ui_ok_group, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_border_width(ui_ok_group, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 
-ui_image_ok_big1 = lv_img_create(ui_ok_group);
-lv_img_set_src(ui_image_ok_big1, &ui_img_ok_big_png);
-lv_obj_set_width( ui_image_ok_big1, LV_SIZE_CONTENT);  /// 1
-lv_obj_set_height( ui_image_ok_big1, LV_SIZE_CONTENT);   /// 1
-lv_obj_set_align( ui_image_ok_big1, LV_ALIGN_CENTER );
-lv_obj_add_flag( ui_image_ok_big1, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
-lv_obj_clear_flag( ui_image_ok_big1, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+ui_mqtt_Spinner = lv_spinner_create(ui_ok_group,1000,90);
+lv_obj_set_width( ui_mqtt_Spinner, 100);
+lv_obj_set_height( ui_mqtt_Spinner, 100);
+lv_obj_set_align( ui_mqtt_Spinner, LV_ALIGN_CENTER );
+lv_obj_clear_flag( ui_mqtt_Spinner, LV_OBJ_FLAG_CLICKABLE );    /// Flags
+lv_obj_set_style_arc_color(ui_mqtt_Spinner, lv_color_hex(0x8F8FFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_arc_opa(ui_mqtt_Spinner, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_arc_width(ui_mqtt_Spinner, 5, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+lv_obj_set_style_arc_color(ui_mqtt_Spinner, lv_color_hex(0xFFFFFF), LV_PART_INDICATOR | LV_STATE_DEFAULT );
+lv_obj_set_style_arc_opa(ui_mqtt_Spinner, 255, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+lv_obj_set_style_arc_width(ui_mqtt_Spinner, 5, LV_PART_INDICATOR| LV_STATE_DEFAULT);
+
+ui_mqtt_image = lv_img_create(ui_ok_group);
+lv_img_set_src(ui_mqtt_image, &ui_img_no_conn_png);
+lv_obj_set_width( ui_mqtt_image, LV_SIZE_CONTENT);  /// 1
+lv_obj_set_height( ui_mqtt_image, LV_SIZE_CONTENT);   /// 1
+lv_obj_set_align( ui_mqtt_image, LV_ALIGN_CENTER );
+lv_obj_add_flag( ui_mqtt_image, LV_OBJ_FLAG_ADV_HITTEST );   /// Flags
+lv_obj_clear_flag( ui_mqtt_image, LV_OBJ_FLAG_SCROLLABLE );    /// Flags
 
 ui_Button = ui_Button_create(ui_ok_group);
 lv_obj_set_x( ui_Button, 0 );
@@ -121,7 +134,6 @@ lv_obj_set_height( ui_info_text, LV_SIZE_CONTENT);   /// 32
 lv_obj_set_x( ui_info_text, 0 );
 lv_obj_set_y( ui_info_text, 17 );
 lv_obj_set_align( ui_info_text, LV_ALIGN_TOP_MID );
-lv_textarea_set_placeholder_text(ui_info_text,"Input text area...");
 lv_textarea_set_one_line(ui_info_text,true);
 lv_obj_clear_flag( ui_info_text, LV_OBJ_FLAG_CLICKABLE );    /// Flags
 lv_obj_set_style_text_color(ui_info_text, lv_color_hex(0x808080), LV_PART_MAIN | LV_STATE_DEFAULT );
@@ -181,6 +193,20 @@ lv_obj_set_style_text_opa(ui_clintid_text, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_bg_color(ui_clintid_text, lv_color_hex(0x454545), LV_PART_MAIN | LV_STATE_DEFAULT );
 lv_obj_set_style_bg_opa(ui_clintid_text, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
 lv_obj_set_style_border_width(ui_clintid_text, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
+
+
+
+ui_clint_addr_text = lv_textarea_create(ui_mqtt_panel);
+lv_obj_set_width( ui_clint_addr_text, 209);
+lv_obj_set_height( ui_clint_addr_text, LV_SIZE_CONTENT);   /// 30
+lv_textarea_set_text(ui_clint_addr_text,"broker.emqx.io");
+lv_textarea_set_placeholder_text(ui_clint_addr_text,"Clint addr");
+lv_textarea_set_one_line(ui_clint_addr_text,true);
+lv_obj_set_style_text_color(ui_clint_addr_text, lv_color_hex(0x789DFF), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_text_opa(ui_clint_addr_text, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_bg_color(ui_clint_addr_text, lv_color_hex(0x454545), LV_PART_MAIN | LV_STATE_DEFAULT );
+lv_obj_set_style_bg_opa(ui_clint_addr_text, 255, LV_PART_MAIN| LV_STATE_DEFAULT);
+lv_obj_set_style_border_width(ui_clint_addr_text, 0, LV_PART_MAIN| LV_STATE_DEFAULT);
 
 
 
@@ -246,6 +272,7 @@ lv_obj_add_event_cb(ui_Button, ui_event_Button_Button, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_subscript_text, ui_event_subscript_text, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_puliish_text, ui_event_puliish_text, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_clintid_text, ui_event_clintid_text, LV_EVENT_ALL, NULL);
+lv_obj_add_event_cb(ui_clint_addr_text, ui_event_clint_addr_text, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_username_text, ui_event_username_text, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_password_text, ui_event_password_text, LV_EVENT_ALL, NULL);
 lv_obj_add_event_cb(ui_port_text, ui_event_port_text, LV_EVENT_ALL, NULL);

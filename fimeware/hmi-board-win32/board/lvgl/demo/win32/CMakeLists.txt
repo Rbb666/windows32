@@ -11,7 +11,7 @@ SET(SOURCES components/ui_comp_button.c
     ui_helpers.c
     images/ui_img_ok_small_png.c
     images/ui_img_no_signal_png.c
-    images/ui_img_ok_big_png.c
+    images/ui_img_no_conn_png.c
     images/ui_img_btn1_png.c
     images/ui_img_btn1_press_png.c
     images/ui_img_roller_bg_png.c
@@ -57,6 +57,7 @@ SET(SOURCES components/ui_comp_button.c
     images/ui_img_file_25x25_png.c
     images/ui_img_line_png.c
     images/ui_img_link_png.c
+    images/ui_img_ok_big_png.c
     images/ui_img_position_png.c
     images/ui_img_talk_png.c
     images/ui_img_wifi_png.c

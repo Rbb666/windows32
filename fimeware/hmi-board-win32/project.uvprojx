@@ -340,7 +340,7 @@
               <MiscControls>-Wno-license-management -Wunused -Wuninitialized -Wall  -Wmissing-declarations  -Wpointer-arith  -Waggregate-return -Wfloat-equal</MiscControls>
               <Define>RT_USING_LIBC, RT_USING_ARMLIBC, __STDC_LIMIT_MACROS, __RTTHREAD__, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine></Undefine>
-              <IncludePath>packages\LVGL-v8.3.8\src\extra\themes\default;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src;packages\LVGL-v8.3.8\src\draw\stm32_dma2d;packages\LVGL-v8.3.8\src\extra\libs\fsdrv;libraries\HAL_Drivers\config;packages\LVGL-v8.3.8\src\extra\layouts\flex;rt-thread\components\net\sal\include\dfs_net;packages\LVGL-v8.3.8\src\extra\widgets\span;rt-thread\components\drivers\include;board\ports;packages\LVGL-v8.3.8\src\extra\libs\png;packages\LVGL-v8.3.8\src\extra\others\fragment;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-v8.3.8\src\core;rt-thread\components\drivers\include;packages\tlsf-v1.0.0\src;packages\LVGL-v8.3.8\src\font;packages\kawaii-mqtt-latest\common\log;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\net\lwip\port;.;packages\LVGL-v8.3.8\src\draw;rt-thread\components\libc\posix\ipc;packages\LVGL-v8.3.8\src\draw\sdl;packages\LVGL-v8.3.8\env_support\rt-thread\squareline\ui\lvgl;packages\kawaii-mqtt-latest\mqtt;packages\LVGL-v8.3.8\src\extra\widgets\spinbox;packages\LVGL-v8.3.8\src\extra\others\gridnav;packages\wavplayer-latest\inc;packages\LVGL-v8.3.8\src\draw\nxp\pxp;packages\LVGL-v8.3.8\src\extra\libs\sjpg;packages\kawaii-mqtt-latest\mqttclient;board\ports\touch\gt911\inc;packages\kawaii-mqtt-latest\platform\RT-Thread;packages\LVGL-v8.3.8\src\extra\themes\basic;packages\LVGL-v8.3.8\src\extra\widgets\spinner;rt-thread\components\net\sal\include;packages\kawaii-mqtt-latest\common;packages\LVGL-v8.3.8\src\extra\libs\bmp;rt-thread\components\drivers\touch;packages\kawaii-mqtt-latest\network;rt-thread\components\drivers\audio;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\draw\nxp\vglite;packages\LVGL-v8.3.8\src\extra\widgets\tileview;board;packages\LVGL-v8.3.8\env_support\rt-thread;packages\LVGL-v8.3.8\src\extra\widgets\animimg;packages\LVGL-v8.3.8\src\extra\widgets\keyboard;rt-thread\components\finsh;packages\LVGL-v8.3.8\src\extra\widgets\colorwheel;packages\LVGL-v8.3.8\src\extra\widgets\chart;rt-thread\components\dfs\dfs_v1\include;board\lvgl\demo\win32\components;rt-thread\components\net\sal\include\socket\sys_socket;packages\LVGL-v8.3.8\src\extra\themes\mono;packages\LVGL-v8.3.8\src\draw\arm2d;packages\LVGL-v8.3.8\src\draw\renesas;packages\LVGL-v8.3.8\src\extra\layouts\grid;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;rt-thread\components\libc\compilers\common\include;packages\LVGL-v8.3.8\src\extra\widgets\msgbox;packages\LVGL-v8.3.8\env_support\rt-thread\squareline;board\lvgl\demo\win32;packages\LVGL-v8.3.8\src\extra\others\snapshot;packages\wavplayer-latest;board\ports\avi;board\ports\wifi;packages\LVGL-v8.3.8\src\draw\sw;board\lvgl\demo\file_explorer;packages\LVGL-v8.3.8\src\extra\others\msg;rt-thread\libcpu\arm\cortex-m4;board\lvgl\demo\win32\fonts;packages\LVGL-v8.3.8\src\extra;packages\LVGL-v8.3.8\src\misc;packages\LVGL-v8.3.8\src\extra\others\imgfont;packages\LVGL-v8.3.8\src\extra\widgets\calendar;packages\LVGL-v8.3.8\src\extra\others\monkey;packages\LVGL-v8.3.8\src\extra\themes;packages\LVGL-v8.3.8\src\extra\layouts;libraries\HAL_Drivers;packages\LVGL-v8.3.8\src\extra\others;packages\LVGL-v8.3.8\src\extra\libs\ffmpeg;rt-thread\components\libc\compilers\common\extension\fcntl\octal;board\lvgl;packages\LVGL-v8.3.8\src\extra\widgets\tabview;packages\LVGL-v8.3.8\src\draw\swm341_dma2d;packages\LVGL-v8.3.8\src\extra\libs\qrcode;rt-thread\components\drivers\wlan;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\gif;packages\LVGL-v8.3.8\src\extra\widgets\imgbtn;rt-thread\include;rt-thread\components\net\lwip\lwip-2.0.3\src\include;packages\LVGL-v8.3.8\src\extra\widgets\win;packages\LVGL-v8.3.8\src\extra\widgets\list;rt-thread\components\libc\posix\io\stdio;rt-thread\components\net\netdev\include;packages\LVGL-v8.3.8\src\extra\widgets\menu;rt-thread\components\dfs\dfs_v1\filesystems\elmfat;board\ports\avi\player;packages\rw007-v2.1.0;packages\LVGL-v8.3.8\src\extra\others\ime;board\lvgl\demo\win32\images;board\ports\audio;board\lvgl\demo;packages\LVGL-v8.3.8\src\extra\widgets\meter;packages\LVGL-v8.3.8\src\extra\widgets;packages\LVGL-v8.3.8\src\extra\widgets\led;packages\LVGL-v8.3.8\src\extra\libs;rt-thread\libcpu\arm\common;board\lvgl\demo\win32\screens;packages\LVGL-v8.3.8\src\widgets;rt-thread\components\net\sal\include\socket;packages\optparse-v1.0.0;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;rt-thread\components\libc\posix\io\poll;packages\LVGL-v8.3.8\src\hal;packages\LVGL-v8.3.8\src\extra\libs\freetype;rt-thread\components\drivers\spi;rt-thread\components\net\sal\impl;packages\rw007-v2.1.0\inc;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\rlottie;rt-thread\components\drivers\include</IncludePath>
+              <IncludePath>packages\LVGL-v8.3.8\src\extra\themes\default;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src;packages\LVGL-v8.3.8\src\draw\stm32_dma2d;packages\LVGL-v8.3.8\src\extra\libs\fsdrv;libraries\HAL_Drivers\config;packages\LVGL-v8.3.8\src\extra\layouts\flex;packages\kawaii-mqtt-v1.1.0\network;packages\LVGL-v8.3.8\src\extra\widgets\span;rt-thread\components\drivers\include;rt-thread\components\drivers\touch;packages\LVGL-v8.3.8\src\extra\libs\png;packages\LVGL-v8.3.8\src\extra\others\fragment;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-v8.3.8\src\core;rt-thread\components\drivers\include;packages\tlsf-v1.0.0\src;packages\LVGL-v8.3.8\src\font;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\net\lwip\port;.;packages\LVGL-v8.3.8\src\draw;rt-thread\components\libc\posix\ipc;packages\LVGL-v8.3.8\src\draw\sdl;packages\LVGL-v8.3.8\env_support\rt-thread\squareline\ui\lvgl;packages\LVGL-v8.3.8\src\extra\widgets\spinbox;packages\LVGL-v8.3.8\src\extra\others\gridnav;packages\cpu_usage-v1.0.0;packages\wavplayer-latest\inc;packages\LVGL-v8.3.8\src\draw\nxp\pxp;packages\LVGL-v8.3.8\src\extra\libs\sjpg;board\ports\touch\gt911\inc;packages\LVGL-v8.3.8\src\extra\themes\basic;packages\LVGL-v8.3.8\src\extra\widgets\spinner;rt-thread\components\net\sal\include;packages\LVGL-v8.3.8\src\extra\libs\bmp;board\ports;rt-thread\components\drivers\audio;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\draw\nxp\vglite;packages\LVGL-v8.3.8\src\extra\widgets\tileview;board;packages\cJSON-v1.7.15;packages\LVGL-v8.3.8\env_support\rt-thread;packages\LVGL-v8.3.8\src\extra\widgets\animimg;packages\LVGL-v8.3.8\src\extra\widgets\keyboard;rt-thread\components\finsh;packages\LVGL-v8.3.8\src\extra\widgets\colorwheel;packages\LVGL-v8.3.8\src\extra\widgets\chart;packages\kawaii-mqtt-v1.1.0\mqttclient;board\lvgl\demo\win32\components;rt-thread\components\net\sal\include\socket\sys_socket;packages\LVGL-v8.3.8\src\extra\themes\mono;packages\LVGL-v8.3.8\src\draw\arm2d;packages\LVGL-v8.3.8\src\draw\renesas;packages\kawaii-mqtt-v1.1.0\common;packages\LVGL-v8.3.8\src\extra\layouts\grid;packages\wavplayer-latest;rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif;rt-thread\components\libc\compilers\common\include;packages\LVGL-v8.3.8\src\extra\widgets\msgbox;packages\LVGL-v8.3.8\env_support\rt-thread\squareline;board\lvgl\demo\win32;packages\LVGL-v8.3.8\src\extra\others\snapshot;rt-thread\components\drivers\spi;board\ports\avi;rt-thread\components\net\sal\include\dfs_net;board\ports\wifi;packages\LVGL-v8.3.8\src\draw\sw;board\lvgl\demo\file_explorer;packages\LVGL-v8.3.8\src\extra\others\msg;rt-thread\libcpu\arm\cortex-m4;board\lvgl\demo\win32\fonts;packages\LVGL-v8.3.8\src\extra;packages\LVGL-v8.3.8\src\misc;packages\LVGL-v8.3.8\src\extra\others\imgfont;packages\kawaii-mqtt-v1.1.0\platform\RT-Thread;packages\LVGL-v8.3.8\src\extra\widgets\calendar;packages\LVGL-v8.3.8\src\extra\others\monkey;packages\LVGL-v8.3.8\src\extra\themes;packages\LVGL-v8.3.8\src\extra\layouts;libraries\HAL_Drivers;packages\LVGL-v8.3.8\src\extra\others;packages\LVGL-v8.3.8\src\extra\libs\ffmpeg;rt-thread\components\dfs\dfs_v1\include;packages\kawaii-mqtt-v1.1.0\common\log;rt-thread\components\libc\compilers\common\extension\fcntl\octal;board\lvgl;packages\LVGL-v8.3.8\src\extra\widgets\tabview;packages\LVGL-v8.3.8\src\draw\swm341_dma2d;packages\LVGL-v8.3.8\src\extra\libs\qrcode;rt-thread\components\drivers\wlan;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\gif;packages\LVGL-v8.3.8\src\extra\widgets\imgbtn;rt-thread\include;rt-thread\components\net\lwip\lwip-2.0.3\src\include;packages\LVGL-v8.3.8\src\extra\widgets\win;packages\LVGL-v8.3.8\src\extra\widgets\list;rt-thread\components\libc\posix\io\stdio;rt-thread\components\net\netdev\include;packages\LVGL-v8.3.8\src\extra\widgets\menu;rt-thread\components\dfs\dfs_v1\filesystems\elmfat;board\ports\avi\player;packages\rw007-v2.1.0;packages\LVGL-v8.3.8\src\extra\others\ime;board\lvgl\demo\win32\images;board\ports\audio;board\lvgl\demo;packages\LVGL-v8.3.8\src\extra\widgets\meter;packages\LVGL-v8.3.8\src\extra\widgets;packages\LVGL-v8.3.8\src\extra\widgets\led;packages\LVGL-v8.3.8\src\extra\libs;rt-thread\libcpu\arm\common;board\lvgl\demo\win32\screens;packages\LVGL-v8.3.8\src\widgets;rt-thread\components\net\sal\include\socket;packages\optparse-v1.0.0;rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4;rt-thread\components\libc\posix\io\poll;packages\LVGL-v8.3.8\src\hal;packages\LVGL-v8.3.8\src\extra\libs\freetype;packages\kawaii-mqtt-v1.1.0\mqtt;rt-thread\components\net\sal\impl;packages\rw007-v2.1.0\inc;rt-thread\components\drivers\include;packages\LVGL-v8.3.8\src\extra\libs\rlottie;rt-thread\components\drivers\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -443,6 +443,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>cJSON</GroupName>
+          <Files>
+            <File>
+              <FileName>cJSON_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cJSON-v1.7.15\cJSON_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cJSON-v1.7.15\cJSON.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON_Utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cJSON-v1.7.15\cJSON_Utils.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Compiler</GroupName>
           <Files>
             <File>
@@ -514,6 +534,21 @@
               <FileName>cpuport.c</FileName>
               <FileType>1</FileType>
               <FilePath>rt-thread\libcpu\arm\cortex-m4\cpuport.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>cpu_usage</GroupName>
+          <Files>
+            <File>
+              <FileName>cpu_usage_cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cpu_usage-v1.0.0\cpu_usage_cmd.c</FilePath>
+            </File>
+            <File>
+              <FileName>cpu_usage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\cpu_usage-v1.0.0\cpu_usage.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1509,129 +1544,129 @@
           <GroupName>kawaii_mqtt</GroupName>
           <Files>
             <File>
-              <FileName>network.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\network\network.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_net_socket.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_net_socket.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTSerializePublish.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSerializePublish.c</FilePath>
-            </File>
-            <File>
-              <FileName>mqttclient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqttclient\mqttclient.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTConnectClient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTConnectClient.c</FilePath>
-            </File>
-            <File>
-              <FileName>arch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\log\arch\rt-thread\arch.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTSubscribeServer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSubscribeServer.c</FilePath>
-            </File>
-            <File>
-              <FileName>nettype_tcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\network\nettype_tcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTUnsubscribeClient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTUnsubscribeClient.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTUnsubscribeServer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTUnsubscribeServer.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_memory.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_memory.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_mutex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_mutex.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTFormat.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTFormat.c</FilePath>
-            </File>
-            <File>
               <FileName>fifo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\log\fifo.c</FilePath>
-            </File>
-            <File>
-              <FileName>nettype_tls.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\network\nettype_tls.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\log\fifo.c</FilePath>
             </File>
             <File>
               <FileName>random.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\random.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\random.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTDeserializePublish.c</FileName>
+              <FileName>nettype_tcp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTDeserializePublish.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\network\nettype_tcp.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileName>platform_net_socket.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTSubscribeClient.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\platform\RT-Thread\platform_net_socket.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTPacket.c</FileName>
+              <FileName>platform_mutex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTPacket.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\platform\RT-Thread\platform_mutex.c</FilePath>
             </File>
             <File>
               <FileName>MQTTConnectServer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\mqtt\MQTTConnectServer.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTConnectServer.c</FilePath>
             </File>
             <File>
-              <FileName>platform_thread.c</FileName>
+              <FileName>mqttclient.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\platform\RT-Thread\platform_thread.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqttclient\mqttclient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTSubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\platform\RT-Thread\platform_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>arch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\log\arch\rt-thread\arch.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTUnsubscribeClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTDeserializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTDeserializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>nettype_tls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\network\nettype_tls.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTUnsubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTUnsubscribeServer.c</FilePath>
             </File>
             <File>
               <FileName>mqtt_list.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\mqtt_list.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\mqtt_list.c</FilePath>
             </File>
             <File>
-              <FileName>format.c</FileName>
+              <FileName>network.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\log\format.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\network\network.c</FilePath>
             </File>
             <File>
               <FileName>salof.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\kawaii-mqtt-latest\common\log\salof.c</FilePath>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\log\salof.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_thread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\platform\RT-Thread\platform_thread.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTConnectClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTSubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTFormat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTFormat.c</FilePath>
+            </File>
+            <File>
+              <FileName>platform_memory.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\platform\RT-Thread\platform_memory.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSerializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTSerializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>format.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\common\log\format.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTPacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\kawaii-mqtt-v1.1.0\mqtt\MQTTPacket.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -13055,6 +13090,11 @@
               <FileName>ui_img_next_png.c</FileName>
               <FileType>1</FileType>
               <FilePath>board\lvgl\demo\win32\images\ui_img_next_png.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_img_no_conn_png.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>board\lvgl\demo\win32\images\ui_img_no_conn_png.c</FilePath>
             </File>
             <File>
               <FileName>ui_img_no_signal_png.c</FileName>

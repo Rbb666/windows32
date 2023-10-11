@@ -11,11 +11,14 @@ extern "C" {
 #endif
 
 void scan_wifi_func(lv_event_t * e);
+void clean_resources(lv_event_t * e);
 void connect_wifi_event(lv_event_t * e);
 void set_mqtt_param_func(lv_event_t * e);
 void show_text_sync(lv_event_t * e);
 void get_keyboard_value(lv_event_t * e);
 void save_alarm_parameter(lv_event_t * e);
+void start_mqtt_recv(lv_event_t * e);
+void wifi_list_show(lv_event_t * e);
 void zoom_window(lv_event_t * e);
 void backlight_slider_event_cb(lv_event_t * e);
 void voice_slider_event_cb(lv_event_t * e);

@@ -242,6 +242,7 @@
 /* IoT - internet of things */
 
 #define PKG_USING_KAWAII_MQTT
+#define KAWAII_MQTT_NETSOCKET_USE_SAL
 #define KAWAII_MQTT_LOG_IS_SALOF
 #define SALOF_USING_LOG
 #define SALOF_USING_SALOF
@@ -294,6 +295,8 @@
 
 /* JSON: JavaScript Object Notation, a lightweight data-interchange format */
 
+#define PKG_USING_CJSON
+#define PKG_USING_CJSON_V1715
 
 /* XML: Extensible Markup Language */
 
@@ -319,6 +322,8 @@
 
 /* tools packages */
 
+#define PKG_USING_CPU_USAGE
+#define PKG_USING_CPU_USAGE_V100
 
 /* system packages */
 

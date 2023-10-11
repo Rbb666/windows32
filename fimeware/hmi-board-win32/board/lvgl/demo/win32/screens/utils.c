@@ -22,6 +22,24 @@ static wifi_info Info;
 wifi_info_t Wifi_InfoS[20];
 int wifi_index = 0;
 
+void extract_numbers(const char *input_str, char *output_str, int output_str_length) 
+{
+    int output_index = 0;
+
+    for (int i = 0; input_str[i] != '\0'; i++) {
+        if (isdigit(input_str[i])) {
+            output_str[output_index] = input_str[i];
+            output_index++;
+
+            if (output_index >= output_str_length - 1) {
+                break;
+            }
+        }
+    }
+
+    output_str[output_index] = '\0';
+}
+
 void PageDelay(uint32_t ms)
 {
     uint32_t lastTime = lv_tick_get();
@@ -37,8 +55,8 @@ static rt_err_t wifi_scan_result_cache(struct rt_wlan_info *info)
 {
     rt_err_t err = RT_EOK;
     if ((info == RT_NULL) || (info->ssid.len == 0)) return -RT_EINVAL;
-    LOG_D("ssid:%s len:%d mac:%02x:%02x:%02x:%02x:%02x:%02x", info->ssid.val, info->ssid.len,
-          info->bssid[0], info->bssid[1], info->bssid[2], info->bssid[3], info->bssid[4], info->bssid[5]);
+//    LOG_D("ssid:%s len:%d mac:%02x:%02x:%02x:%02x:%02x:%02x", info->ssid.val, info->ssid.len,
+//          info->bssid[0], info->bssid[1], info->bssid[2], info->bssid[3], info->bssid[4], info->bssid[5]);
     return err;
 }
 
@@ -68,7 +86,7 @@ static void wifi_scan_thread_entry(void *parameter)
     struct rt_wlan_info *info = RT_NULL;
     int ret = 0;
     int i = 0;
- 
+
     while (rt_wlan_get_mode(RT_WLAN_DEVICE_STA_NAME) != RT_WLAN_STATION)
     {
         rt_thread_mdelay(200);
@@ -87,7 +105,7 @@ static void wifi_scan_thread_entry(void *parameter)
         LOG_E("Scan with info error:%d!\n", ret);
         return;
     }
-    wifi_show_ui();
+    wifi_show_ui(ui_Network_panel);
 }
 
 int WiFi_Scan(void)
@@ -214,20 +232,20 @@ void wifi_event_handler(lv_event_t *e)
                 break;
             }
         }
-        //lv_label_set_text(ui_wifiTextArea, s);
+        lv_textarea_set_placeholder_text(ui_wifiTextArea, ssid);
         _ui_opacity_set(ui_wifi_input_panel, 0);
         _ui_flag_modify(ui_wifi_input_panel, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
         fadein_Animation(ui_wifi_input_panel, 0);
     }
 }
 
-void wifi_show_ui(void)
+void wifi_show_ui(lv_obj_t *obj)
 {
     uint16_t i = 0, ops_y = 0, duration = 0;
 
     if (rt_wlan_is_connected() == RT_TRUE)
     {
-        wifiname_list_btn = lv_list_add_btn(ui_Network_panel, RT_NULL, Wifi_InfoS[wifi_index].ssid);
+        wifiname_list_btn = lv_list_add_btn(obj, RT_NULL, Wifi_InfoS[wifi_index].ssid);
         lv_obj_set_size(wifiname_list_btn, 250, 25);
         lv_obj_align(wifiname_list_btn, LV_ALIGN_TOP_MID, 0, ops_y);
         lv_obj_clear_flag(wifiname_list_btn, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -257,7 +275,7 @@ void wifi_show_ui(void)
     {
         for (i = 0, duration = 100, ops_y = 0; i < 8; i++, duration += 100, ops_y += 30)
         {
-            wifiname_list_btn = lv_list_add_btn(ui_Network_panel, RT_NULL, Wifi_InfoS[i].ssid);
+            wifiname_list_btn = lv_list_add_btn(obj, RT_NULL, Wifi_InfoS[i].ssid);
             lv_obj_set_size(wifiname_list_btn, 250, 25);
             lv_obj_align(wifiname_list_btn, LV_ALIGN_TOP_MID, 0, ops_y);
             lv_obj_clear_flag(wifiname_list_btn, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -316,15 +334,4 @@ void palyer_list_clear(player_t p)
             p->video_list[i] = RT_NULL;
         }
     }
-}
-
-void play_video(const char *video_name)
-{
-//    palyer_list_clear(&v_player);
-//    player_control(&v_player, PLAYER_CMD_INIT, (char *)video_name);
-}
-
-void exit_play_video(void)
-{
-//    player_control(&v_player, PLAYER_CMD_DELETE, RT_NULL);
 }

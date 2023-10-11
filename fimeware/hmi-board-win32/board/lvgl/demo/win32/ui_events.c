@@ -5,33 +5,33 @@
 
 #include "ui.h"
 #include "utils.h"
+#include "mqttclient.h"
+#include "cpu_usage.h"
+#include "cJSON.h"
+
+static lv_chart_series_t *temp_series = NULL;
+static lv_chart_series_t *humi_series = NULL;
+
+static int mqtt_conn_state = -1;
+static uint8_t wlan_task = 0;
+static uint8_t is_main_page = 0;
+static int temp_value, humi_value;
+static mqtt_client_t *client = NULL;
+
+char *alarm_temp_data;
+char *alarm_humi_data;
 
 lv_obj_t *wifiname_list_btn;
 lv_obj_t *ui_wifi_icon;
+lv_obj_t *file_explorer_panel;
 
-void play_music_function(lv_event_t *e)
-{
-    rt_kprintf("play_music_function\n");
-//    wavplayer_pause();
-}
-
-void pause_music_function(lv_event_t *e)
-{
-    rt_kprintf("pause_music_function\n");
-//    wavplayer_resume();
-}
-
-void switch_player1_func(lv_event_t *e)
-{
-    // Your code here
-//    wavplayer_play("music/song1.wav");
-}
-
-void switch_player2_func(lv_event_t *e)
-{
-    // Your code here
-//    wavplayer_play("music/song2.wav");
-}
+const char *subscript_text;
+const char *puliish_text;
+const char *clint_addr_text;
+const char *clintid_text;
+const char *username_text;
+const char *password_text;
+const char *port_text;
 
 void backlight_slider_event_cb(lv_event_t *e)
 {
@@ -49,15 +49,7 @@ void voice_slider_event_cb(lv_event_t *e)
     wavplayer_volume_set(val);
 }
 
-void shutdown_music(lv_event_t *e)
-{
-    // Your code here
-//    char *music_name = wavplayer_uri_get();
-//    wavplayer_pause();
-//    wavplayer_stop();
-}
-
-lv_timer_t *net_timer;
+lv_timer_t *lvgl_timer;
 
 void wifi_timer(lv_timer_t *timer)
 {
@@ -69,7 +61,7 @@ void wifi_timer(lv_timer_t *timer)
         lv_img_set_src(ui_wlan_image,  &ui_img_ok_big_png);
         _ui_screen_change(&ui_mqtt_Setting, LV_SCR_LOAD_ANIM_FADE_ON, 200, 400, &ui_mqtt_Setting_screen_init);
 
-        lv_timer_del(net_timer);
+        lv_timer_del(lvgl_timer);
     }
 }
 
@@ -82,24 +74,25 @@ void connect_wifi_event(lv_event_t *e)
     {
         rt_strncpy(Wifi_InfoS[wifi_index].password, wifi_password, rt_strlen(wifi_password));
         WiFi_Join(Wifi_InfoS[wifi_index].ssid, Wifi_InfoS[wifi_index].password);
-        net_timer = lv_timer_create(wifi_timer, 1000, NULL);
+        if (!wlan_task)
+        {
+            lvgl_timer = lv_timer_create(wifi_timer, 1000, NULL);
+            wlan_task = 1;
+        }
         rt_free(wifi_password);
     }
-}
-
-void move_video_panel_to_left(lv_event_t *e)
-{
-    // Your code here
 }
 
 void save_alarm_parameter(lv_event_t *e)
 {
     // Your code here
-    char buf1[32], buf2[32];
+    char buf1[8], buf2[8];
     lv_roller_get_selected_str(ui_temp_roller, buf1, sizeof(buf1));
     lv_roller_get_selected_str(ui_humi_roller, buf2, sizeof(buf2));
-
-    rt_kprintf("%s  %s\n", buf1, buf2);
+    alarm_temp_data = rt_strdup(buf1);
+    alarm_humi_data = rt_strdup(buf2);
+    extract_numbers(buf1, alarm_temp_data, sizeof(buf1));
+    extract_numbers(buf2, alarm_humi_data, sizeof(buf2));
 }
 
 void scan_wifi_func(lv_event_t *e)
@@ -123,15 +116,154 @@ void zoom_window(lv_event_t *e)
     }
 }
 
+static void sub_topic_handle(void *client, message_data_t *msg)
+{
+    (void) client;
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+    KAWAII_MQTT_LOG_I("%s:%d %s()...\ntopic: %s\nmessage:%s", __FILE__, __LINE__, __FUNCTION__, msg->topic_name, (char *)msg->message->payload);
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+
+    if (!is_main_page)
+        return;
+
+    // 解析 JSON 字符串
+    cJSON *root = cJSON_Parse((const char *)msg->message->payload);
+
+    if (root == NULL)
+    {
+        printf("JSON parsing failed.\n");
+        return;
+    }
+
+    // 查找并获取温度值
+    cJSON *temp_obj = cJSON_GetObjectItem(root, "temp");
+    if (temp_obj != NULL)
+    {
+        if (temp_obj->type == cJSON_Number)
+        {
+            temp_value = temp_obj->valuedouble;
+        }
+    }
+
+    // 查找并获取湿度值
+    cJSON *humi_obj = cJSON_GetObjectItem(root, "humi");
+    if (humi_obj != NULL)
+    {
+        if (humi_obj->type == cJSON_Number)
+        {
+            humi_value = humi_obj->valuedouble;
+        }
+    }
+
+    cJSON_Delete(root);  // 释放 cJSON 对象
+
+    ui_acquire();
+
+    lv_arc_set_value(ui_temp_arc, temp_value);
+    lv_arc_set_value(ui_humi_arc, humi_value);
+
+    lv_chart_set_next_value(ui_sensor_chart, temp_series, temp_value);
+    lv_chart_set_next_value(ui_sensor_chart, humi_series, humi_value);
+
+    lv_textarea_set_text(ui_debugArea, (const char *)msg->message->payload);
+
+    ui_release();
+}
+
+static int mqtt_publish_handle(mqtt_client_t *client, const char *data)
+{
+    mqtt_message_t msg;
+    memset(&msg, 0, sizeof(msg));
+
+    msg.qos = QOS0;
+    msg.payload = (void *)data;
+
+    return mqtt_publish(client, puliish_text, &msg);
+}
+
+void mqtt_thread_entry(void *parameter)
+{
+    mqtt_log_init();
+
+    client = mqtt_lease();
+
+    mqtt_set_host(client, (char *)clint_addr_text);
+    mqtt_set_port(client, (char *)port_text);
+    mqtt_set_user_name(client, (char *)username_text);
+    mqtt_set_password(client, (char *)password_text);
+    mqtt_set_client_id(client, (char *)clintid_text);
+    mqtt_set_clean_session(client, 1);
+
+    mqtt_conn_state = mqtt_connect(client);
+
+    mqtt_subscribe(client, subscript_text, QOS0, sub_topic_handle);
+}
+
+void mqtt_timer(lv_timer_t *timer)
+{
+    if (mqtt_conn_state == RT_EOK)
+    {
+        leftoff_Animation(ui_mqtt_Spinner, 200);
+        _ui_flag_modify(ui_mqtt_Spinner, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+        lv_img_set_src(ui_mqtt_image, &ui_img_ok_big_png);
+
+        _ui_screen_change(&ui_setting_param, LV_SCR_LOAD_ANIM_FADE_ON, 200, 400, &ui_setting_param_screen_init);
+        lv_timer_del(lvgl_timer);
+    }
+}
+
 void set_mqtt_param_func(lv_event_t *e)
 {
     // Your code here
-    lv_label_get_text(ui_subscript_text);
-    lv_label_get_text(ui_puliish_text);
-    lv_label_get_text(ui_clintid_text);
-    lv_label_get_text(ui_username_text);
-    lv_label_get_text(ui_password_text);
-    lv_label_get_text(ui_port_text);
+    if (!rt_wlan_is_connected())
+        return;
+
+    subscript_text = lv_textarea_get_text(ui_subscript_text);
+    puliish_text = lv_textarea_get_text(ui_puliish_text);
+    clint_addr_text = lv_textarea_get_text(ui_clint_addr_text);
+    clintid_text = lv_textarea_get_text(ui_clintid_text);
+    username_text = lv_textarea_get_text(ui_username_text);
+    password_text = lv_textarea_get_text(ui_password_text);
+    port_text = lv_textarea_get_text(ui_port_text);
+
+    if (strlen(subscript_text) == 0)
+    {
+        lv_textarea_set_placeholder_text(ui_subscript_text, "cannot be empty");
+        lv_obj_set_style_text_color(ui_subscript_text, lv_color_hex(0xFF0000), LV_PART_TEXTAREA_PLACEHOLDER | LV_STATE_DEFAULT);
+        return;
+    }
+    if (strlen(puliish_text) == 0)
+    {
+        lv_textarea_set_placeholder_text(ui_puliish_text, "cannot be empty");
+        lv_obj_set_style_text_color(ui_puliish_text, lv_color_hex(0xFF0000), LV_PART_TEXTAREA_PLACEHOLDER | LV_STATE_DEFAULT);
+        return;
+    }
+    if (strlen(clint_addr_text) == 0)
+    {
+        lv_textarea_set_placeholder_text(ui_clint_addr_text, "cannot be empty");
+        lv_obj_set_style_text_color(ui_clint_addr_text, lv_color_hex(0xFF0000), LV_PART_TEXTAREA_PLACEHOLDER | LV_STATE_DEFAULT);
+        return;
+    }
+    if (strlen(clintid_text) == 0)
+    {
+        lv_textarea_set_placeholder_text(ui_clintid_text, "cannot be empty");
+        lv_obj_set_style_text_color(ui_clintid_text, lv_color_hex(0xFF0000), LV_PART_TEXTAREA_PLACEHOLDER | LV_STATE_DEFAULT);
+        return;
+    }
+
+    rt_thread_t tid;
+
+    tid = rt_thread_create("mqtt", mqtt_thread_entry, RT_NULL,
+                           RT_MAIN_THREAD_STACK_SIZE, 20, 20);
+    RT_ASSERT(tid != RT_NULL);
+
+    rt_thread_startup(tid);
+
+    if (wlan_task)
+    {
+        lvgl_timer = lv_timer_create(mqtt_timer, 1000, NULL);
+        wlan_task = 0;
+    }
 }
 
 void get_keyboard_value(lv_event_t *e)
@@ -146,10 +278,63 @@ void get_keyboard_value(lv_event_t *e)
         _ui_flag_modify(ui_Keyboard2, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
 }
 
-void show_text_sync(lv_event_t * e)
+void show_text_sync(lv_event_t *e)
 {
-	// Your code here
+    // Your code here
     lv_obj_t *obj = lv_event_get_target(e);
 
     lv_textarea_set_text(ui_info_text, lv_textarea_get_text(obj));
+}
+
+void mqtt_recv_timer(lv_timer_t *timer)
+{
+    rt_size_t total = 0, used = 0, max_used = 0;
+    uint8_t cpu_usage = 0, ram_usage = 0;
+
+    rt_memory_info(&total, &used, &max_used);
+    cpu_usage = (int)cpu_load_average();
+    ram_usage = __Map(used, 0, total, 0, 100);
+
+    lv_bar_set_value(ui_Cpu_Bar, cpu_usage, LV_ANIM_ON);
+    lv_bar_set_value(ui_ram_Bar, ram_usage, LV_ANIM_ON);
+
+    lv_label_set_text_fmt(ui_cpu_label, "#1 CPU            %d%", cpu_usage);
+    lv_label_set_text_fmt(ui_ram_label, "#2 RAM           %d%", ram_usage);
+
+    if (temp_value >= atoi(alarm_temp_data))
+        mqtt_publish_handle(client, "temperature warning!");
+    if (humi_value >= atoi(alarm_humi_data))
+        mqtt_publish_handle(client, "humidity warning!");
+}
+
+void start_mqtt_recv(lv_event_t *e)
+{
+    // Your code here
+    is_main_page = 1;
+
+    temp_series = lv_chart_add_series(ui_sensor_chart, lv_color_hex(0xFFCB40), LV_CHART_AXIS_PRIMARY_Y);
+    humi_series = lv_chart_add_series(ui_sensor_chart, lv_color_hex(0x0087FF), LV_CHART_AXIS_SECONDARY_Y);
+    
+    file_explorer_panel = lv_file_explorer_create(ui_main_filesys_panel);
+    lv_obj_set_width( file_explorer_panel, 290);
+    lv_obj_set_height( file_explorer_panel, 145);
+    lv_obj_set_y( file_explorer_panel, 5);
+    lv_obj_set_align( file_explorer_panel, LV_ALIGN_CENTER );
+    lv_obj_clear_flag( file_explorer_panel, LV_OBJ_FLAG_PRESS_LOCK | LV_OBJ_FLAG_SCROLLABLE );    /// Flags
+    lv_file_explorer_set_sort(file_explorer_panel, LV_EXPLORER_SORT_NONE);
+    lv_file_explorer_open_dir(file_explorer_panel, "/");
+    
+    lvgl_timer = lv_timer_create(mqtt_recv_timer, 1500, NULL);
+}
+
+void wifi_list_show(lv_event_t * e)
+{
+	// Your code here
+    wifi_show_ui(ui_main_network_panel);
+}
+
+void clean_resources(lv_event_t * e)
+{
+	// Your code here
+    lv_obj_clean(ui_main_network_panel);
 }

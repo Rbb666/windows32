@@ -35,6 +35,7 @@ void topoff_Animation( lv_obj_t *TargetObject, int delay);
 void lefton_Animation( lv_obj_t *TargetObject, int delay);
 void leftoff_Animation( lv_obj_t *TargetObject, int delay);
 void cardin_Animation( lv_obj_t *TargetObject, int delay);
+void turnmenuon_Animation( lv_obj_t *TargetObject, int delay);
 // SCREEN: ui_setup
 void ui_setup_screen_init(void);
 void ui_event_setup( lv_event_t * e);
@@ -73,7 +74,8 @@ extern lv_obj_t *ui_dot8;
 extern lv_obj_t *ui_line6;
 extern lv_obj_t *ui_dot9;
 extern lv_obj_t *ui_ok_group;
-extern lv_obj_t *ui_image_ok_big1;
+extern lv_obj_t *ui_mqtt_Spinner;
+extern lv_obj_t *ui_mqtt_image;
 void ui_event_Button_Button( lv_event_t * e);
 extern lv_obj_t *ui_Button;
 extern lv_obj_t *ui_info_text;
@@ -84,6 +86,8 @@ void ui_event_puliish_text( lv_event_t * e);
 extern lv_obj_t *ui_puliish_text;
 void ui_event_clintid_text( lv_event_t * e);
 extern lv_obj_t *ui_clintid_text;
+void ui_event_clint_addr_text( lv_event_t * e);
+extern lv_obj_t *ui_clint_addr_text;
 void ui_event_username_text( lv_event_t * e);
 extern lv_obj_t *ui_username_text;
 void ui_event_password_text( lv_event_t * e);
@@ -134,13 +138,19 @@ void ui_event_voice( lv_event_t * e);
 extern lv_obj_t *ui_voice;
 extern lv_obj_t *ui_time;
 extern lv_obj_t *ui_monitor;
-extern lv_obj_t *ui_Arc1;
+extern lv_obj_t *ui_Temp_label;
+extern lv_obj_t *ui_sensor_chart;
+extern lv_obj_t *ui_temp_arc;
 extern lv_obj_t *ui_Image7;
-extern lv_obj_t *ui_Arc2;
+extern lv_obj_t *ui_humi_arc;
 extern lv_obj_t *ui_Image8;
-extern lv_obj_t *ui_Chart1;
-extern lv_obj_t *ui_Chart2;
-extern lv_obj_t *ui_Label6;
+extern lv_obj_t *ui_bar_panel;
+extern lv_obj_t *ui_cpu_label;
+extern lv_obj_t *ui_Cpu_Bar;
+extern lv_obj_t *ui_ram_label;
+extern lv_obj_t *ui_ram_Bar;
+extern lv_obj_t *ui_rom_label;
+extern lv_obj_t *ui_rom_Bar;
 extern lv_obj_t *ui_Setting_Pannel;
 void ui_event_sys_display_panel( lv_event_t * e);
 extern lv_obj_t *ui_sys_display_panel;
@@ -256,7 +266,7 @@ extern lv_obj_t *ui____initial_actions0;
 
 LV_IMG_DECLARE( ui_img_ok_small_png);   // assets\ok_small.png
 LV_IMG_DECLARE( ui_img_no_signal_png);   // assets\no_signal.png
-LV_IMG_DECLARE( ui_img_ok_big_png);   // assets\ok_big.png
+LV_IMG_DECLARE( ui_img_no_conn_png);   // assets\no_conn.png
 LV_IMG_DECLARE( ui_img_btn1_png);   // assets\btn1.png
 LV_IMG_DECLARE( ui_img_btn1_press_png);   // assets\btn1_press.png
 LV_IMG_DECLARE( ui_img_roller_bg_png);   // assets\roller_bg.png
@@ -302,6 +312,7 @@ LV_IMG_DECLARE( ui_img_clash_png);   // assets\clash.png
 LV_IMG_DECLARE( ui_img_file_25x25_png);   // assets\file_25x25.png
 LV_IMG_DECLARE( ui_img_line_png);   // assets\line.png
 LV_IMG_DECLARE( ui_img_link_png);   // assets\link.png
+LV_IMG_DECLARE( ui_img_ok_big_png);   // assets\ok_big.png
 LV_IMG_DECLARE( ui_img_position_png);   // assets\position.png
 LV_IMG_DECLARE( ui_img_talk_png);   // assets\talk.png
 LV_IMG_DECLARE( ui_img_wifi_png);   // assets\wifi.png

@@ -8,6 +8,7 @@
 #include "platform_timer.h"
 #include "platform_memory.h"
 #include "nettype_tcp.h"
+#include <string.h>
 
 #ifdef KAWAII_MQTT_NETWORK_TYPE_TLS
 #include "nettype_tls.h"
@@ -75,6 +76,7 @@ void network_release(network_t* n)
     if (n->socket >= 0)
         network_disconnect(n);
 
+    memset(n, 0, sizeof(network_t));
 }
 
 void network_set_channel(network_t *n, int channel)
