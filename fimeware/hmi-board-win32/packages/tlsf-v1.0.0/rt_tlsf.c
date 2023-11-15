@@ -204,9 +204,9 @@ static void mem_info(void *ptr, size_t size, int used, void *user)
     total_mem += size;
 }
 
-void rt_memory_info(rt_uint32_t *total,
-                    rt_uint32_t *used,
-                    rt_uint32_t *max_used)
+void rt_memory_info(rt_size_t *total,
+                    rt_size_t *used,
+                    rt_size_t *max_used)
 {
     used_mem = 0;
     total_mem = 0;
